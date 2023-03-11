@@ -1,0 +1,19 @@
+{
+    "Glutten-free Bakery": [
+        {
+            "productName": "Chocolate Cake",
+            "price": "$3.50",
+            "description": "One slice of dark chocolate cake with chocolate icing"
+        },
+        {
+            "productName": "Chocolate Pudding",
+            "price": "$2.00",
+            "description": "Milk chocolate pudding topped with whipped cream"
+        },
+        {
+            "productName": "Vegan Flan",
+            "price": "$2.50",
+            "description": "Creamy flan with sugary syrup on top"
+        }
+    ]
+}
