@@ -1,18 +1,18 @@
 {
-    "Baked Goods": [
+    "data": [
         {
             "productName": "Blueberry Muffin",
-            "price": "$2.99",
+            "price": "2.99",
             "description": "Large blueberry muffin topped with a brown sugar streusel"
         },
         {
             "productName": "Glazed Donut",
-            "price": "$1.49",
+            "price": "1.49",
             "description": "Donut covered in a sugar glaze"
         },
         {
             "productName": "White Cupcake",
-            "price": "$3.49",
+            "price": "3.49",
             "description": "White cake topped with buttercream icing and rainbow sprinkles"
         }
     ]

@@ -1,5 +1,6 @@
 body{
     background-color: lightgoldenrodyellow;
+    font-family: Helvetica, sans-serif;
 }
 
 .topnav {
@@ -25,4 +26,8 @@ body{
   .topnav a.active{
     background-color: lightcoral;
     color: white;
+  }
+
+  .product{
+    
   }
