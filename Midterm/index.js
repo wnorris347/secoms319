@@ -14,7 +14,7 @@ fetch("./data.json")
                         let mainContainer = document.getElementById(element["productName"]);
                         console.log(element);
                         let div2 = document.createElement("div");
-                        div2.innerHTML = `${element["productName"]}<br>$${element["price"]} <br>${element["description"]}`;
+                        div2.innerHTML = `<strong>${element["productName"]}</strong><br>$${element["price"]}<br><br>${element["description"]}`;
                         
                         const imageElement = document.createElement('img');
                         const imageSrc = element["image"];

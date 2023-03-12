@@ -28,14 +28,24 @@ body{
     color: white;
   }
 
- .product
+ .product div
   {
     color:black;
     font-size: medium;
     text-align: left;
+    max-width: 200px;
+    line-height: 20px;
+    border: 1px solid lightgrey;
+    text-align: center;
+  }
 
+  #container{
+    display: flex;
+    justify-content: space-around;
   }
 
   img{
-    width: 400px;
+    width: 200px;
+    display: block;
+    margin: auto;
   }
