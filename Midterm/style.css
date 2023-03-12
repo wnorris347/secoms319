@@ -28,6 +28,10 @@ body{
     color: white;
   }
 
-  .product{
-    
+ .product
+  {
+    color:black;
+    font-size: medium;
+    text-align: left;
+
   }
