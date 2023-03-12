@@ -15,6 +15,12 @@ fetch("./data.json")
                         console.log(element);
                         let div2 = document.createElement("div");
                         div2.innerHTML = `${element["productName"]}<br>$${element["price"]} <br>${element["description"]}`;
+                        
+                        const imageElement = document.createElement('img');
+                        const imageSrc ='data.image/jpg;base64,' + productName.image;
+                        imageElement.setAttribute('src',imageSrc);
+                        mainContainer.appendChild(imageElement);
+                                
                         mainContainer.appendChild(div2);
                     }
                 }
