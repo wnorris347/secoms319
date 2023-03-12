@@ -3,17 +3,20 @@
         {
             "productName": "Blueberry Muffin",
             "price": "2.99",
-            "description": "Large blueberry muffin topped with a brown sugar streusel"
+            "description": "Large blueberry muffin served with milk",
+            "image": "./images/muffin.jpg"
         },
         {
-            "productName": "Glazed Donut",
+            "productName": "Doughnut",
             "price": "1.49",
-            "description": "Donut covered in a sugar glaze"
+            "description": "Doughnut topped with vanilla frosting and a chocolate drizzle",
+            "image": "./images/doughnut.jpg"
         },
         {
             "productName": "White Cupcake",
             "price": "3.49",
-            "description": "White cake topped with buttercream icing and rainbow sprinkles"
+            "description": "White cake topped with blue buttercream icing and sprinkles",
+            "image": "./images/cupcake.jpg"
         },
         {
             "productName": "Chocolate Cake",
