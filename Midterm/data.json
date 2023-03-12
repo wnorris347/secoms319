@@ -19,16 +19,19 @@
             "productName": "Chocolate Cake",
             "price": "$3.50",
             "description": "One slice of dark chocolate cake with chocolate icing"
+            "image": "./images/chocolatecake.jpg"
         },
         {
-            "productName": "Chocolate Pudding",
+            "productName": "Chocolate Brownie",
             "price": "$2.00",
-            "description": "Milk chocolate pudding topped with whipped cream"
+            "description": "Regularly Brownie stuffed with chocolate chips"
+            "image": "./images/brownie.jpg"
         },
         {
-            "productName": "Vegan Flan",
-            "price": "$2.50",
-            "description": "Creamy flan with sugary syrup on top"
+            "productName": "Volcano Cake",
+            "price": "3.59",
+            "description": "Chocolate cake with rich chocolate syrup in the middle",
+            "image": "./images/volcanocake.jpg"
         }
     ]
 }
