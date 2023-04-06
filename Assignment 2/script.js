@@ -1,0 +1,1 @@
+let itemsInCart = 0;
