@@ -1,25 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import ReactDOM from "react-dom/client";
+import React, {useState, useEffect} from "react";
+import items from "./data.json";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const Shop = () => {
+    const [cart, setCart] = useState([]);
+    const [cartTotal, setCartTotal] = useState(0);
+
+    useEffect(() => {
+        total();
+    }, [cart]);
+
+    const total = () => {
+        let totalVal = 0;
+        for (let i = 0; i < cart.length; i++){
+            totalVal += cart[i].price;
+        }
+        setCartTotal(totalVal);
+    };
+
+    const addToCart = (el) => {
+        setCart([...cart, el]);
+    }
+
+    const removeFromCart = (el) => {
+        let hardCopy = [...cart];
+        hardCopy = hardCopy.filter((cartItem) => cartItem.id !== el.id);
+        setCart(hardCopy);
+    }
+
+    const cartItems = cart.map((el) => (
+        <div key={el.id}>
+            <img class="img-fluid" src={el.image} width={30}/>
+            {el.productName}
+            ${el.price}
+        </div>
+    ));
+
+    const listItems = items.map((el) => (
+        <div key={el.productName}>
+            <img class="img-fluid" src={el.image} />
+            {el.productName}
+            {el.description}
+            {el.price}
+            <button type="button" onClick={() => removeFromCart(el)}>-</button>{" "}
+            <button type="button" variant="light" onClick={() => addToCart(el)}>+</button>
+        </div>
+    ));
+
+    return(
+        <div>
+            <div>{listItems}</div>
+            <div>Items in Cart:</div>
+            <div>{cartItems}</div>
+            <div>Total: ${cartTotal}</div>
+        </div>
+    );
 }
 
-export default App;
+export default Shop;
