@@ -96,7 +96,7 @@ const Shop = () => {
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                                 <button type="button" onClick={() => removeFromCart(product)}>-</button>{" "}
-                                <span style={{width: "30px", align: "center"}}>{howManyofThis(product.id)}</span>
+                                <span style={{width: "10px", align: "center"}}>{howManyofThis(product.id)}</span>
                                 <button type="button" variant="light" onClick={() => addToCart(product)}>+</button>
 
                             </div>
