@@ -34,5 +34,41 @@ function Cart(){
         setExpire(newExpire);
     }
 
+    const handleCV = (e) => {
+        const newCV = e.target.value;
+        setCV(newCV);
+
+    }
+    const handleEmail = (e) => {
+        const newEmail = e.target.value;
+        setEmail(newEmail);
+    }
+
+    const handleCity = (e) => {
+        const newCity = e.target.value;
+        setCity(newCity);
+        
+    }
+    const handleState = (e) => {
+        const newState = e.target.value;
+        setState(newState);
+        
+    }
+    const handleZip = (e) => {
+        const newZip = e.target.value;
+        setZip(newZip);
+        
+    }
+    const handleAddress = (e) => {
+        const newAddress = e.target.value;
+        setAddress(newAddress);
+        
+    }
+    const handleAddress2 = (e) => {
+        const newAddress2 = e.target.value;
+        setAddress2(newAddress2);
+        
+    }
+
     
 }
