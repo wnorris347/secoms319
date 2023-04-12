@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import ReactDOM from "react-dom/client";
 import items from "./data.json";
-import Products from "./src/Products.js";
+import Products from "../assignment-2/src/Products.js";
 
 const Shop = () => {
     const [cart, setCart] = useState([]);
