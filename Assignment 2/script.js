@@ -11,7 +11,14 @@ root.render(
         <Shop />
     </React.StrictMode>
 );
-
+<button
+    floated='left'
+    size='big'
+    color='white'
+    onClick={Shop}
+    >
+        checkout
+    </button>
 
 const Shop = () => {
     const [cart, setCart] = useState([]);
