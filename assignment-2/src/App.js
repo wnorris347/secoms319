@@ -8,7 +8,7 @@ const Shop = () => {
     const [cart, setCart] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
     const [ProductsCategory, setProductsCategory] = useState(Products);
-    const [query, setQuery] = useState('');
+    const [query, setQuery] = useState("");
 
     useEffect(() => {
         total();
@@ -72,11 +72,13 @@ const Shop = () => {
                                 />
                             </div>
                             <div className="flex justify-between p-3">
-                                <p className="text-sm font-medium text-green-600">${product.price}</p>
+                                <p className="text-sm font-medium text-green-600">${product.price.toFixed(2)}</p>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                                 <button type="button" onClick={() => removeFromCart(product)}>-</button>{" "}
+                                <span style={{width: "30px", align: "center"}}>{howManyofThis(product.id)}</span>
                                 <button type="button" variant="light" onClick={() => addToCart(product)}>+</button>
+
                             </div>
                         </div>
                     ))}
@@ -144,7 +146,18 @@ const Shop = () => {
                 <div class="col-12">
                     <div class="card card-registration card-registration-2">
                         <div class="card-body p-0">
-                            
+                            <div class="row g-0">
+                                <div class="col-lg-8">
+                                    <div class="p-5">
+                                        <div class="d-flex justify-content-between align-items-center mb-5">
+                                            <h1 class="fw-bold mb-0 text-black">Bakery Bros</h1>
+                                            <input class="mr-5" placeholder="Search" type="search" value={query} onChange={handleChange}/>
+                                            <h6 class="mb-0 text-muted">{cart.length} items in cart</h6>
+                                        </div>
+                                        {render_products(ProductsCategory)}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
