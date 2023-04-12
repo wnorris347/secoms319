@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import ReactDOM from "react-dom/client";
 import items from "./data.json";
-import Products from "./Products.js";
+import Products from "./src/Products.js";
 
 const Shop = () => {
     const [cart, setCart] = useState([]);
@@ -41,7 +41,7 @@ const Shop = () => {
         const render_products = (ProductsCategory) => {
             return(
                 <div className="">
-                    
+
                 </div>
             )
         }

@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from "react";
 import ReactDOM from "react-dom/client";
 import items from "./data.json";
+import Products from "./Products.js";
+import "./App.css";
 
 const Shop = () => {
     const [cart, setCart] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
+    const [ProductsCategory, setProductsCategory] = useState(Products);
 
     useEffect(() => {
         total();
@@ -35,6 +38,14 @@ const Shop = () => {
             ${el.price}
         </div>
     ));
+
+        const render_products = (ProductsCategory) => {
+            return(
+                <div className="">
+                    
+                </div>
+            )
+        }
 
     const listItems = items.map(el => (
         <div key={el.productName}>
