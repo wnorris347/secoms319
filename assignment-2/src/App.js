@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import ReactDOM from "react-dom/client";
 import items from "./data.json";
-import Products from "./Products.js";
+import {Products} from "./Products.js";
 import "./App.css";
 
 const Shop = () => {
