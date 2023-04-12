@@ -74,7 +74,7 @@ const Shop = () => {
                 <div className="m-6 p-3 mt-10 ml-0 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-6 x1:gap-x-10" style={{maxHeight: '800px', overflowY: 'scroll'}}>
                     {ProductsCategory.map((product, index) => (
                         <div key={index} classNameclassName="group relative shadow-lg" >
-                            <div className=" min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-60 lg:aspect-none">
+                            <div className=" min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-70 lg:aspect-none">
                                 <img
                                     alt={product.description}
                                     src={product.image}
@@ -84,6 +84,8 @@ const Shop = () => {
                             </div>
                             <div className="flex justify-between p-3">
                                 <div class="">
+                                    <p className="text-black font-weight-bold">{product.productName}</p>
+                                    <h6 className="text-muted">{product.description}</h6>
 
                                 </div>
                                 <div className="label-success">
@@ -96,6 +98,7 @@ const Shop = () => {
                                 <button type="button" variant="light" onClick={() => addToCart(product)}>+</button>
 
                             </div>
+                            
                         </div>
                     ))}
                 </div>
