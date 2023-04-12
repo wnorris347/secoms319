@@ -28,7 +28,7 @@ const Shop = () => {
         setCart(hardCopy);
     }
 
-    const cartItems = cart.map((el) => (
+    const cartItems = cart.map(el => (
         <div key={el.id}>
             <img class="img-fluid" src={el.image} width={30}/>
             {el.productName}
@@ -36,14 +36,14 @@ const Shop = () => {
         </div>
     ));
 
-    const listItems = items.map((el) => (
+    const listItems = Object.keys(items).map((el, i) => (
         <div key={el.productName}>
-            <img class="img-fluid" src={el.image} />
-            {el.productName}
-            {el.description}
-            {el.price}
-            <button type="button" onClick={() => removeFromCart(el)}>-</button>{" "}
-            <button type="button" variant="light" onClick={() => addToCart(el)}>+</button>
+            <img class="img-fluid" src={items[el].image} />
+            {items[el].productName}
+            {items[el].description}
+            {items[el].price}
+            <button type="button" onClick={() => removeFromCart(items[el])}>-</button>{" "}
+            <button type="button" variant="light" onClick={() => addToCart(items[el])}>+</button>
         </div>
     ));
 
