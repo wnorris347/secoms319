@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect} from "react";
 import ReactDOM from "react-dom/client";
 import items from "./data.json";
@@ -39,6 +40,11 @@ const Shop = () => {
         if(itemFound){
             setCart(cartCopy);
         }
+    }
+
+    function howManyofThis(id){
+        let hmot = cart.filter((cartItem) => cartItem.id === id);
+        return hmot.length;
     }
 
     function howManyofThis(id){
