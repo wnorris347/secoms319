@@ -8,6 +8,7 @@ const Shop = () => {
     const [cart, setCart] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
     const [ProductsCategory, setProductsCategory] = useState(Products);
+    const [query, setQuery] = useState('');
 
     useEffect(() => {
         total();
@@ -16,9 +17,9 @@ const Shop = () => {
     const total = () => {
         let totalVal = 0;
         for (let i = 0; i < cart.length; i++){
-            totalVal += cart[i].price;
+            totalVal += parseFloat((cart[i].price * 1.07).toFixed(2));
         }
-        setCartTotal(totalVal);
+        setCartTotal(totalVal.toFixed(2));
     };
 
     const addToCart = (el) => {
@@ -39,6 +40,17 @@ const Shop = () => {
         </div>
     ));
 
+    const handleChange = (e) => {
+        setQuery(e.target.value);
+        const results = Products.filter(product =>{
+            if(e.target.value === ""){
+                return ProductsCategory;
+            }else{
+                return product.title.toLowerCase().includes(e.target.value.toLowerCase());
+            }
+        });
+    }
+
     const render_products = (ProductsCategory) => {
         return(
             <div className="category-section fixed">
@@ -51,6 +63,7 @@ const Shop = () => {
                                     alt={product.description}
                                     src={product.image}
                                     className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+                                    width="200px"
                                 />
                             </div>
                             <div className="flex justify-between p-3">
@@ -69,10 +82,10 @@ const Shop = () => {
 
     const listItems = items.map(el => (
         <div key={el.productName}>
-            <img class="img-fluid" src={el.image} />
-            {el.productName}
-            {el.description}
-            {el.price}
+            <img class="img-fluid" src={el.image} width="200px"/>
+            <p>{el.productName}</p>
+            <p>{el.description}</p>
+            <p>${el.price.toFixed(2)}</p>
             <button type="button" onClick={() => removeFromCart(el)}>-</button>{" "}
             <button type="button" variant="light" onClick={() => addToCart(el)}>+</button>
         </div>
