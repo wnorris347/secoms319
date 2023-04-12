@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.css";
 const Shop = () => {
     const [cart, setCart] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
-    const [ProductsCategory, setProductsCategory] = useState(Products);
+    const [ProductsCategory, setProductsCategory] = useState(items);
     const [query, setQuery] = useState("");
 
     useEffect(() => {
@@ -108,7 +108,7 @@ const Shop = () => {
         )
     }
 
-    const listItems = items.map(el => (
+    const listItems = ProductsCategory.map(el => (
             <div class="row border-top border-bottom" key={el.id}>
                 <div class="row main align-items-center">
                     <div class="col 2">
@@ -178,9 +178,23 @@ const Shop = () => {
                                     <div class="d-flex justify-content-between align-items-center mb-5">
                                         <h1 class="fw-bold mb-0 text-black">Bakery Bros</h1>
                                         <input class="mr-5" placeholder="Search" type="search" value={query} onChange={handleChange}/>
-                                        <button class="btn-primary" onClick={() => printCart()}>Checkout</button>
                                     </div>
                                     {listItems}
+                                </div>
+                                <div class="float-end">
+                                    <p class="mb-0 me-5 d-flex align-items-center">
+                                        <span class="small text-muted me-2">Order subtotal: </span>
+                                        <span class="lead fw-normal">${cartTotal}</span>
+                                    </p>
+                                    <p class="mb-0 me-5 d-flex align-items-center">
+                                        <span class="small text-muted me-2">Sales tax: </span>
+                                        <span class="lead fw-normal">${(cartTotal * 0.07).toFixed(2)}</span>
+                                    </p>
+                                    <p class="mb-0 me-5 d-flex align-items-center">
+                                        <span class="small text-muted me-2">Order total: </span>
+                                        <span class="lead fw-normal">${(cartTotal * 1.07).toFixed(2)}</span>
+                                    </p>
+                                    <button class="btn-primary">Checkout</button>
                                 </div>
                             </div>
                         </div>
