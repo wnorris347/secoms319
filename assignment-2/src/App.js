@@ -106,7 +106,7 @@ const Shop = () => {
         </div>
     ));
 
-    return(
+    const printCart = () => {
         <div>
             Bakery Bros
             <div class="card">
@@ -135,7 +135,22 @@ const Shop = () => {
                 </div>
             </div>
         </div>
-    );
+    }
+
+
+    return(
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12">
+                    <div class="card card-registration card-registration-2">
+                        <div class="card-body p-0">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 };
 
 export default Shop;
