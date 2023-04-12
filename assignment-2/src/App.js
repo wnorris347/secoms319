@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import items from "./data.json";
 import {Products} from "./Products.js";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
 
 const Shop = () => {
     const [cart, setCart] = useState([]);
@@ -27,9 +28,17 @@ const Shop = () => {
     }
 
     const removeFromCart = (el) => {
-        let hardCopy = [...cart];
-        hardCopy = hardCopy.filter((cartItem) => cartItem.id !== el.id);
-        setCart(hardCopy);
+        let itemFound = false;
+        const cartCopy = cart.filter((item) =>{
+            if(item.id === el.id && !itemFound){
+                itemFound = true;
+                return false;
+            }
+            return true;
+        });
+        if(itemFound){
+            setCart(cartCopy);
+        }
     }
 
     function howManyofThis(id){
@@ -51,14 +60,14 @@ const Shop = () => {
             if(e.target.value === ""){
                 return ProductsCategory;
             }else{
-                return product.title.toLowerCase().includes(e.target.value.toLowerCase());
+                return product.productName.toLowerCase().includes(e.target.value.toLowerCase());
             }
         });
     }
 
     const render_products = (ProductsCategory) => {
         return(
-            <div className="category-section fixed">
+            <div>
                 <h2 className="text-3x1 font-extrabold tracking-tight text-gray-600 category-title">Products ({ProductsCategory.length})</h2>
                 <div className="m-6 p-3 mt-10 ml-0 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-6 x1:gap-x-10" style={{maxHeight: '800px', overflowY: 'scroll'}}>
                     {ProductsCategory.map((product, index) => (
@@ -72,7 +81,12 @@ const Shop = () => {
                                 />
                             </div>
                             <div className="flex justify-between p-3">
-                                <p className="text-sm font-medium text-green-600">${product.price.toFixed(2)}</p>
+                                <div class="">
+
+                                </div>
+                                <div class="label-success">
+                                    ${product.price.toFixed(2)}
+                                </div>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                                 <button type="button" onClick={() => removeFromCart(product)}>-</button>{" "}
@@ -111,7 +125,6 @@ const Shop = () => {
     const printCart = () => {
         <div>
             Bakery Bros
-            <div class="card">
                 <div class="row">
                     <div class="col-md-8 cart">
                         <div class="title">
@@ -136,26 +149,23 @@ const Shop = () => {
                     </div>
                 </div>
             </div>
-        </div>
     }
 
 
     return(
-        <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12">
-                    <div class="card card-registration card-registration-2">
-                        <div class="card-body p-0">
-                            <div class="row g-0">
-                                <div class="col-lg-8">
-                                    <div class="p-5">
-                                        <div class="d-flex justify-content-between align-items-center mb-5">
-                                            <h1 class="fw-bold mb-0 text-black">Bakery Bros</h1>
-                                            <input class="mr-5" placeholder="Search" type="search" value={query} onChange={handleChange}/>
-                                            <h6 class="mb-0 text-muted">{cart.length} items in cart</h6>
-                                        </div>
-                                        {render_products(ProductsCategory)}
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12">
+                <div class="card card-registration card-registration-2">
+                    <div class="card-body p-0">
+                        <div class="row g-0">
+                            <div class="col-lg-8">
+                                <div class="p-5">
+                                    <div class="d-flex justify-content-between align-items-center mb-5">
+                                        <h1 class="fw-bold mb-0 text-black">Bakery Bros</h1>
+                                        <input class="mr-5" placeholder="Search" type="search" value={query} onChange={handleChange}/>
+                                        <h6 class="mb-0 text-muted">{cart.length} items in cart</h6>
                                     </div>
+                                    {render_products(ProductsCategory)}
                                 </div>
                             </div>
                         </div>
