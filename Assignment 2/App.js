@@ -15,7 +15,7 @@ const Shop = () => {
     const total = () => {
         let totalVal = 0;
         for (let i = 0; i < cart.length; i++){
-            totalVal += cart[i].price;
+            totalVal += (parseFloat(cart[i].price) * 1.07).toFixed(2);
         }
         setCartTotal(totalVal);
     };
