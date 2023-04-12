@@ -1,6 +1,23 @@
 import React, {useState, useEffect} from "react";
 import ReactDOM from "react-dom/client";
 import items from "./data.json";
+//import '../assets/dist/css/bootstrap.min.css';
+
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+    <React.StrictMode>
+        <Shop />
+    </React.StrictMode>
+);
+/*<button
+    floated='left'
+    size='big'
+    color='white'
+    onClick={Shop}
+    >
+        checkout
+    </button>*/
 
 const Shop = () => {
     const [cart, setCart] = useState([]);
