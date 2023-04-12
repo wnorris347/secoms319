@@ -1,6 +1,8 @@
-import ReactDOM from "react-dom/client";
 import React, {useState, useEffect} from "react";
-import items from "./data.json";
+import ReactDOM from "react-dom/client";
+import data from "./data.json";
+
+
 
 
 const Shop = () => {
@@ -37,7 +39,7 @@ const Shop = () => {
         </div>
     ));
 
-    const listItems = items.map((el) => (
+    const listItems = data.map((el) => (
         <div key={el.productName}>
             <img class="img-fluid" src={el.image} />
             {el.productName}
