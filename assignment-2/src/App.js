@@ -67,6 +67,8 @@ const Shop = () => {
         setProductsCategory(results);
     }
 
+    const productsInCart = items.filter(item => {cart.includes(item);});
+
     const render_products = (ProductsCategory) => {
         return(
             <div>
@@ -106,7 +108,7 @@ const Shop = () => {
         )
     }
 
-    const listItems = items.map(el => (
+    const listItems = productsInCart.map(el => (
             <div class="row border-top border-bottom" key={el.id}>
                 <div class="row main align-items-center">
                     <div class="col 2">
