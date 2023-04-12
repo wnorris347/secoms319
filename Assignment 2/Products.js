@@ -1,0 +1,45 @@
+export const Products = 
+[
+    {
+        "id": 1,
+        "productName": "Blueberry Muffin",
+        "price": "2.99",
+        "description": "Large blueberry muffin served with milk",
+        "image": "./images/muffin.jpg"
+    },
+    {
+        "id": 2,
+        "productName": "Doughnut",
+        "price": "1.49",
+        "description": "Doughnut topped with vanilla frosting and a chocolate drizzle",
+        "image": "./images/doughnut.jpg"
+    },
+    {
+        "id": 3,
+        "productName": "White Cupcake",
+        "price": "3.49",
+        "description": "White cake topped with blue buttercream icing and sprinkles",
+        "image": "./images/cupcake.jpg"
+    },
+    {
+        "id": 4,
+        "productName": "Chocolate Cake",
+        "price": "3.50",
+        "description": "One slice of dark chocolate cake with chocolate icing",
+        "image": "./images/chocolatecake.jpg"
+    },
+    {
+        "id": 5,
+        "productName": "Chocolate Brownie",
+        "price": "2.00",
+        "description": "Brownie stuffed with chocolate chips",
+        "image": "./images/brownie.jpg"
+    },
+    {
+        "id": 6,
+        "productName": "Volcano Cake",
+        "price": "3.59",
+        "description": "Chocolate cake with rich chocolate syrup in the middle",
+        "image": "./images/volcanocake.jpg"
+    }
+]

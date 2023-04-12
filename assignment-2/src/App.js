@@ -36,14 +36,14 @@ const Shop = () => {
         </div>
     ));
 
-    const listItems = Object.keys(items).map((el, i) => (
+    const listItems = items.map(el => (
         <div key={el.productName}>
-            <img class="img-fluid" src={items[el].image} />
-            {items[el].productName}
-            {items[el].description}
-            {items[el].price}
-            <button type="button" onClick={() => removeFromCart(items[el])}>-</button>{" "}
-            <button type="button" variant="light" onClick={() => addToCart(items[el])}>+</button>
+            <img class="img-fluid" src={el.image} />
+            {el.productName}
+            {el.description}
+            {el.price}
+            <button type="button" onClick={() => removeFromCart(el)}>-</button>{" "}
+            <button type="button" variant="light" onClick={() => addToCart(el)}>+</button>
         </div>
     ));
 
