@@ -47,11 +47,6 @@ const Shop = () => {
         return hmot.length;
     }
 
-    function howManyofThis(id){
-        let hmot = cart.filter((cartItem) => cartItem.id === id);
-        return hmot.length;
-    }
-
     const cartItems = cart.map(el => (
         <div key={el.id}>
             <img class="img-fluid" src={el.image} width={30}/>
@@ -69,7 +64,7 @@ const Shop = () => {
                 return product.productName.toLowerCase().includes(e.target.value.toLowerCase());
             }
         });
-        return render_products(results);
+        setProductsCategory(results);
     }
 
     const render_products = (ProductsCategory) => {
@@ -91,7 +86,7 @@ const Shop = () => {
                                 <div class="">
 
                                 </div>
-                                <div class="label-success">
+                                <div className="label-success">
                                     ${product.price.toFixed(2)}
                                 </div>
                             </div>
@@ -178,7 +173,7 @@ const Shop = () => {
                                     <div class="d-flex justify-content-between align-items-center mb-5">
                                         <h1 class="fw-bold mb-0 text-black">Bakery Bros</h1>
                                         <input class="mr-5" placeholder="Search" type="search" value={query} onChange={handleChange}/>
-                                        <button class="btn-primary"></button>
+                                        <button class="btn-primary" onClick={() => printCart()}>Checkout</button>
                                     </div>
                                     {render_products(ProductsCategory)}
                                 </div>
