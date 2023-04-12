@@ -88,7 +88,7 @@ const Shop = () => {
                             <div className="flex justify-between p-3">
                                 <div class="">
                                     <p className="text-black font-weight-bold">{product.productName}</p>
-                                    <h6 className="text-muted">{product.description}</h6>
+                                    <p className="text-muted">{product.description}</p>
 
                                 </div>
                                 <div className="label-success">
