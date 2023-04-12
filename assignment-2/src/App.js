@@ -108,7 +108,7 @@ const Shop = () => {
         )
     }
 
-    const listItems = productsInCart.map(el => (
+    const listItems = items.map(el => (
             <div class="row border-top border-bottom" key={el.id}>
                 <div class="row main align-items-center">
                     <div class="col 2">
@@ -180,7 +180,7 @@ const Shop = () => {
                                         <input class="mr-5" placeholder="Search" type="search" value={query} onChange={handleChange}/>
                                         <button class="btn-primary" onClick={() => printCart()}>Checkout</button>
                                     </div>
-                                    {render_products(ProductsCategory)}
+                                    {listItems}
                                 </div>
                             </div>
                         </div>
