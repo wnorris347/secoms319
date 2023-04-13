@@ -250,7 +250,7 @@ return (
                                         <div class="row">
                                             <div class="col-2"></div>
                                             <div class="col-8">
-                                                <h1>Please enter you payment information</h1>
+                                                <h1>Please enter your payment information</h1>
                                                 <div id="liveAlertPlaceholder"></div>
                                                 <form class="row g-3" id="checkout-form">
                                                 <div class="col-md-6">
