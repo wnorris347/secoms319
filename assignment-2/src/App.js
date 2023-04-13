@@ -29,7 +29,7 @@ const Shop = () => {
         for (let i = 0; i < cart.length; i++){
             totalVal += parseFloat(cart[i].price).toFixed(2);
         }
-        setCartTotal(totalVal.toFixed(2));
+        setCartTotal(parseFloat(totalVal).toFixed(2));
     };
 
     const handleCheckout = () => {
@@ -44,10 +44,29 @@ const Shop = () => {
         setShowConfirmation(true);
     }
 
+    const goBack = () => {
+        setShowBrowse(true);
+        setShowCart(false);
+        setShowConfirmation(false);
+        setQuery('');
+    }
+
     const handleReturn = () => {
         setShowBrowse(true);
         setShowCart(false);
         setShowConfirmation(false);
+        setQuery('');
+        setCart([]);
+    }
+
+    const censor = (str) => {
+        let chars = str.split('');
+        for(let i = 0; i < str.length; i++){
+            if(i < 15 || chars[i] !== '-'){
+                chars[i] = 'X';
+            }
+        }
+        return chars.join('');
     }
 
     const addToCart = (el) => {
@@ -138,51 +157,58 @@ const Shop = () => {
 
     function validate() {
         let val = true;
-        let email = document.getElementById("inputEmail4");
-        let name = document.getElementById("inputName");
-        let card = document.getElementById("inputCard");
-        let address = document.getElementById("inputAddress");
-        let zip = document.getElementById("inputZip");
-        let city = document.getElementById("inputCity");
+        let userEmail = document.getElementById("inputEmail4");
+        let userName = document.getElementById("inputName");
+        let userCard = document.getElementById("inputCard");
+        let address1 = document.getElementById("inputAddress");
+        let userZip = document.getElementById("inputZip");
+        let userCity = document.getElementById("inputCity");
+        let userState = document.getElementById("inputState");
 
-        if(!email.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
-            email.setAttribute("class", "form-control is-invalid");
+        if(!userEmail.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+            userEmail.setAttribute("class", "form-control is-invalid");
             val = false;
         }else{
-            email.setAttribute("class", "form-control is-valid");
-            setEmail(email.value);
+            userEmail.setAttribute("class", "form-control is-valid");
+            setEmail(userEmail.value);
         }
-        if(name.value.length == 0){
-            name.setAttribute("class", "form-control is-invalid");
+        if(userName.value.length == 0){
+            userName.setAttribute("class", "form-control is-invalid");
             val = false;
         }else{
-            name.setAttribute("class", "form-control is-valid");
-            setName(name.value);
+            userName.setAttribute("class", "form-control is-valid");
+            setName(userName.value);
         }
-        if (!card.value.match(/^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/)){
-            card.setAttribute("class", "form-control is-invalid");
+        if (!userCard.value.match(/^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/)){
+            userCard.setAttribute("class", "form-control is-invalid");
             val = false;
         }else{
-            card.setAttribute("class", "form-control is-valid");
-            setCard(card.value);
-        }if(isNaN(parseInt(zip.value)) || zip.value.length !== 5){
-            zip.setAttribute("class", "form-control is-invalid");
+            userCard.setAttribute("class", "form-control is-valid");
+            setCard(userCard.value);
+        }if(isNaN(parseInt(userZip.value)) || userZip.value.length !== 5){
+            userZip.setAttribute("class", "form-control is-invalid");
             val = false;
         }else{
-            zip.setAttribute("class", "form-control is-valid");
-            setZip(card.value);
-        }if(!(typeof address.value === String || address.value instanceof String) || address.value.length === 0){
-            address.setAttribute("class", "form-control is-invalid");
+            userZip.setAttribute("class", "form-control is-valid");
+            setZip(userZip.value);
+        }if(!(typeof address1.value === String || address1.value instanceof String) || address1.value.length === 0){
+            address1.setAttribute("class", "form-control is-invalid");
             val = false;
         }else{
-            address.setAttribute("class", "form-control is-valid");
-            setAddress(address.value);
-        }if(!(typeof city.value === String || city.value instanceof String) || city.value.length === 0){
-            city.setAttribute("class", "form-control is-invalid");
+            address1.setAttribute("class", "form-control is-valid");
+            setAddress(address1.value);
+        }if(!(typeof userCity.value === String || userCity.value instanceof String) || userCity.value.length === 0){
+            userCity.setAttribute("class", "form-control is-invalid");
             val = false;
         }else{
-            address.setAttribute("class", "form-control is-valid");
-            setCity(city.value);
+            userCity.setAttribute("class", "form-control is-valid");
+            setCity(userCity.value);
+        }if(userState.value != "Choose..."){
+            userCity.setAttribute("class", "form-control is-valid");
+            setState(userCity.value);
+        }else{
+            userCity.setAttribute("class", "form-control is-invalid");
+            val = false;
         }
         return val;
     }
@@ -205,11 +231,11 @@ return (
                             <div class="float-end">
                                 <p class="mb-0 me-5 d-flex align-items-center">
                                     <span class="small text-muted me-2">Subtotal:</span>
-                                    <span class="lead fw-normal">${cartTotal.toFixed(2)}</span>
+                                    <span class="lead fw-normal">${parseFloat(cartTotal).toFixed(2)}</span>
                                     <span class="small text-muted me-2">Tax:</span>
-                                    <span class="lead fw-normal">${(cartTotal * 0.07).toFixed(2)}</span>
+                                    <span class="lead fw-normal">${parseFloat(cartTotal * 0.07).toFixed(2)}</span>
                                     <span class="small text-muted me-2">Total:</span>
-                                    <span class="lead fw-normal">${(cartTotal * 1.07).toFixed(2)}</span>
+                                    <span class="lead fw-normal">${parseFloat(cartTotal * 1.07).toFixed(2)}</span>
                                 </p>
                                 {showBrowse && (
                                     <button type="button" onClick={() => handleCheckout()}>
@@ -310,6 +336,7 @@ return (
                                                     <input type="text" class="form-control" id="inputZip" />
                                                 </div>
                                                 <div class="col-12">
+                                                    <button type="button" class="btn btn-default" onClick={() => goBack()}>Return</button>
                                                     <button type="button" class="btn btn-success" onClick={() => handleSubmit()}>
                                                         {" "}
                                                         <i class="bi-bag-check"></i> Order
@@ -330,7 +357,10 @@ return (
                                         {cartItems}<br />
                                         {name}<br />
                                         {email}<br />
-                                        {card}<br />
+                                        {censor(card)}<br />
+                                        {address}<br />
+                                        {city}
+                                        {state}
                                     </div>
                                     <ul class="list-group list-group-flush"></ul>
                                     <button type="button" class="btn btn-success" onClick={() => handleReturn}>Return</button>
