@@ -166,7 +166,24 @@ const Shop = () => {
         </div>
     ));
 
-    
+    const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+    const form = document.getElementById('checkout-form');
+    const inputCard = document.querySelector('#inputCard');
+    const alertTrigger = document.getElementById('submit-btn');
+    const summaryCard = document.querySelector('.card');
+    const summaryList = document.querySelector('.card > ul');
+
+    const alert = (message, type) => {
+        const wrapper = document.createElement('div')
+        wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `<div>${message}</div>`,
+        `<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
+        `</div>`
+        ].join('')
+        alertPlaceholder.append(wrapper)
+        }
+        
 
     function isNumeric(n){
         return !isNaN(parseFloat(n)) && isFinite(n);
