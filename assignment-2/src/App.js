@@ -29,7 +29,7 @@ const Shop = () => {
     const total = () => {
         let totalVal = 0;
         for (let i = 0; i < cart.length; i++){
-            totalVal += parseFloat(cart[i].price.toFixed(2));
+            totalVal += parseFloat(cart[i].price).toFixed(2);
         }
         setCartTotal(totalVal.toFixed(2));
     };
@@ -215,7 +215,7 @@ return (
                                 </p>
                                 {showBrowse && (
                                     <button type="button" onClick={() => handleCheckout()}>
-                                        Proceed to checkout :D
+                                        Proceed to checkout
                                     </button>
                                 )}
                             
@@ -275,6 +275,9 @@ return (
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
+                                                    <label
+                                                </div>
+                                                <div class="col-12">
                                                     <label for="inputAddress" class="form-label">
                                                         Address
                                                     </label>
@@ -312,7 +315,7 @@ return (
                                                     <input type="text" class="form-control" id="inputZip" />
                                                 </div>
                                                 <div class="col-12">
-                                                    <button type="button" class="btn btn-success" onClick={() => handleSubmitButton()}>
+                                                    <button type="button" class="btn btn-success" onClick={() => handleSubmit()}>
                                                         {" "}
                                                         <i class="bi-bag-check"></i> Order
                                                     </button>
