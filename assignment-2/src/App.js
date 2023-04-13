@@ -6,7 +6,6 @@ import {Products} from "./Products.js";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Modal from "react-modal";
-import Cart from "./cart.js";
 
 const Shop = () => {
     const [cart, setCart] = useState([]);
