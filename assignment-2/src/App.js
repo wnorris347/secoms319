@@ -191,24 +191,6 @@ const Shop = () => {
             </div>
         </div>
     ));
-
-    const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
-    const form = document.getElementById('checkout-form');
-    const inputCard = document.querySelector('#inputCard');
-    const alertTrigger = document.getElementById('submit-btn');
-    const summaryCard = document.querySelector('.card');
-    const summaryList = document.querySelector('.card > ul');
-
-    const alert = (message, type) => {
-        const wrapper = document.createElement('div');
-        wrapper.innerHTML = [
-            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-            `<div>${message}</div>`,
-            `<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
-            `</div>`
-        ].join('');
-        alertPlaceholder.append(wrapper);
-    }
         
 
     function isNumeric(n){
@@ -232,20 +214,6 @@ return (
                                 Products chosen: {cart.length}
                             </div>
                             <div class="float-end">
-                                <p class="mb-0 me-5 d-flex align-items-center">
-                                    <span class="small text-muted me-2">Subtotal:</span>
-                                    <span class="lead fw-normal">${Math.round(cartTotal * 100) / 100}</span>
-                                    <span class="small text-muted me-2">Tax:</span>
-                                    <span class="lead fw-normal">${Math.round(cartTotal * 7) / 100}</span>
-                                    <span class="small text-muted me-2">Total:</span>
-                                    <span class="lead fw-normal">${Math.round(cartTotal * 107) / 100}</span>
-                                </p>
-                                {showBrowse && (
-                                    <button type="button" onClick={() => handleCheckout()}>
-                                        Proceed to checkout
-                                    </button>
-                                )}
-                            
                                 {showBrowse && (
                                     <div>
                                         <div className="py-10">
@@ -255,6 +223,25 @@ return (
                                             </div>
                                             {listItems}
                                             </div>
+                                )}
+                                <p class="mb-0 me-5 d-flex align-items-center">
+                                    <div>
+                                        <span class="small text-muted me-2">Subtotal:</span>
+                                        <span class="lead fw-normal">${Math.round(cartTotal * 100) / 100}</span>
+                                    </div>
+                                    <div>
+                                        <span class="small text-muted me-2">Tax:</span>
+                                        <span class="lead fw-normal">${Math.round(cartTotal * 7) / 100}</span>
+                                    </div>
+                                    <div>
+                                        <span class="small text-muted me-2">Total:</span>
+                                        <span class="lead fw-normal">${Math.round(cartTotal * 107) / 100}</span>
+                                    </div>
+                                </p>
+                                {showBrowse && (
+                                    <button type="button" onClick={() => handleCheckout()}>
+                                        Proceed to checkout
+                                    </button>
                                 )}
                                 {showCart && (
                                     <div>
