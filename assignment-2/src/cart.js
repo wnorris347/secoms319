@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Shop from "./App.js";
+import Modal
 
 function Cart(){
     const [show, setShow] = useState(false);
@@ -70,5 +71,16 @@ function Cart(){
         
     }
 
-    
+    return (
+        <>
+            <header>
+                <title>Checkout</title>
+            </header>
+            <body>
+                <div class="container">
+
+                </div>
+            </body>
+        </>
+    )
 }

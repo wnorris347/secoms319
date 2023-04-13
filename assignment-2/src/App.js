@@ -5,6 +5,7 @@ import items from "./data.json";
 import {Products} from "./Products.js";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
+import Modal from "react-modal";
 import Cart from "./cart.js";
 
 const Shop = () => {
@@ -12,6 +13,73 @@ const Shop = () => {
     const [cartTotal, setCartTotal] = useState(0);
     const [ProductsCategory, setProductsCategory] = useState(items);
     const [query, setQuery] = useState("");
+    const [show, setShow] = useState(false);
+
+    const hideModal = () => setShow(false);
+    const showModal = () => setShow(true);
+
+    const [name, setName] = useState('');
+    const [card, setCard] = useState('');
+    const [expire, setExpire] = useState('');
+    const [cv, setCV] = useState('');
+    const [email, setEmail] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [zip, setZip] = useState('');
+    const [address, setAddress] = useState('');
+    const [address2, setAddress2] = useState('');
+
+
+    const handleName = (e) => {
+        const newName = e.target.value;
+        setName(newName);
+    };
+
+    const handleCard = (e) => {
+        const newCard = e.target.value;
+        setCard(newCard);
+    }
+
+    const handleExpire = (e) => {
+        const newExpire = e.target.value;
+        setExpire(newExpire);
+    }
+
+    const handleCV = (e) => {
+        const newCV = e.target.value;
+        setCV(newCV);
+
+    }
+    const handleEmail = (e) => {
+        const newEmail = e.target.value;
+        setEmail(newEmail);
+    }
+
+    const handleCity = (e) => {
+        const newCity = e.target.value;
+        setCity(newCity);
+        
+    }
+    const handleState = (e) => {
+        const newState = e.target.value;
+        setState(newState);
+        
+    }
+    const handleZip = (e) => {
+        const newZip = e.target.value;
+        setZip(newZip);
+        
+    }
+    const handleAddress = (e) => {
+        const newAddress = e.target.value;
+        setAddress(newAddress);
+        
+    }
+    const handleAddress2 = (e) => {
+        const newAddress2 = e.target.value;
+        setAddress2(newAddress2);
+        
+    }
 
     useEffect(() => {
         total();
@@ -43,17 +111,31 @@ const Shop = () => {
         }
     }
 
+    const productsInCart = items.filter(item => {cart.includes(item.id);});
+
     function howManyofThis(id){
         let hmot = cart.filter((cartItem) => cartItem.id === id);
         return hmot.length;
     }
 
-    const cartItems = cart.map(el => (
-        <div key={el.id}>
-            <img class="img-fluid" src={el.image} width={30}/>
-            {el.productName}
-            ${el.price}
-        </div>
+    const cartItems = productsInCart.map(el => (
+        <div class="row border-top border-bottom">
+                <div class="row main align-items-center">
+                    <div class="col 2">
+                        <img class="img-fluid" src={el.image}/>
+                    </div>
+                    <div class="col">
+                        <div class="row text-muted">{el.productName}</div>
+                        <div class="row">{el.description}</div>
+                    </div>
+                    <div class="col">
+                        {howManyofThis(el.id)}
+                    </div>
+                    <div class="col">
+                        ${(el.price * howManyofThis(el.id)).toFixed(2)};
+                    </div>
+                </div>
+            </div>
     ));
 
     const handleChange = (e) => {
@@ -67,8 +149,6 @@ const Shop = () => {
         });
         setProductsCategory(results);
     }
-
-    const productsInCart = items.filter(item => {cart.includes(item);});
 
     const render_products = (ProductsCategory) => {
         return(
@@ -131,40 +211,42 @@ const Shop = () => {
     ));
 
     const printCart = () => {
-        <div>
-            Bakery Bros
-                <div class="row">
-                    <div class="col-md-8 cart">
-                        <div class="title">
-                            <div class="row">
-                                <div class="col">
-                                    <h4>
-                                        Cart
-                                    </h4>
-                                </div>
-                                <div class="col align-self-center text-right text-muted">
-                                    Products selected: {cart.length}
+        return(
+            <div>
+                Bakery Bros
+                    <div class="row">
+                        <div class="col-md-8 cart">
+                            <div class="title">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>
+                                            Cart
+                                        </h4>
+                                    </div>
+                                    <div class="col align-self-center text-right text-muted">
+                                        Products selected: {cart.length}
+                                    </div>
                                 </div>
                             </div>
+                            <div>{cartItems}</div>
                         </div>
-                        <div>{listItems}</div>
-                    </div>
-                    <div class="float-end">
-                        <p class="mb-0 me-5 d-flex align-items-center">
-                            <span class="small text-muted me-2">Order subtotal: </span>
-                            <span class="lead fw-normal">${cartTotal}</span>
-                        </p>
-                        <p class="mb-0 me-5 d-flex align-items-center">
-                            <span class="small text-muted me-2">Sales tax: </span>
-                            <span class="lead fw-normal">${(cartTotal * 0.07).toFixed(2)}</span>
-                        </p>
-                        <p class="mb-0 me-5 d-flex align-items-center">
-                            <span class="small text-muted me-2">Order total: </span>
-                            <span class="lead fw-normal">${(cartTotal * 1.07).toFixed(2)}</span>
-                        </p>
+                        <div class="float-end">
+                            <p class="mb-0 me-5 d-flex align-items-center">
+                                <span class="small text-muted me-2">Order subtotal: </span>
+                                <span class="lead fw-normal">${cartTotal}</span>
+                            </p>
+                            <p class="mb-0 me-5 d-flex align-items-center">
+                                <span class="small text-muted me-2">Sales tax: </span>
+                                <span class="lead fw-normal">${(cartTotal * 0.07).toFixed(2)}</span>
+                            </p>
+                            <p class="mb-0 me-5 d-flex align-items-center">
+                                <span class="small text-muted me-2">Order total: </span>
+                                <span class="lead fw-normal">${(cartTotal * 1.07).toFixed(2)}</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
+        );
     }
 
     return(
@@ -194,7 +276,34 @@ const Shop = () => {
                                         <span class="small text-muted me-2">Order total: </span>
                                         <span class="lead fw-normal">${(cartTotal * 1.07).toFixed(2)}</span>
                                     </p>
-                                    <button class="btn-primary">Checkout</button>
+                                    <button class="btn-primary" onClick={showModal}>Checkout</button>
+
+                                    <Modal isOpen={show} onRequestClose={hideModal}>
+                                        <header>
+                                            <title>Checkout</title>
+                                        </header>
+                                        <body>
+                                            <div class="col">
+                                                <p class="fw-bold">
+                                                    Item
+                                                </p>
+                                            </div>
+                                            <div class="col">
+                                                <p class="fw-bold">
+                                                    Quantity
+                                                </p>
+                                            </div>
+                                            <div class="col">
+                                                <p class="fw-bold">
+                                                    Price
+                                                </p>
+                                            </div>
+                                            <div>
+                                                {printCart}
+                                            </div>
+                                        </body>
+                                    </Modal>
+
                                 </div>
                             </div>
                         </div>
