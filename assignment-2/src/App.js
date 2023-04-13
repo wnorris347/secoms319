@@ -123,15 +123,15 @@ const Shop = () => {
     const summaryList = document.querySelector('.card > ul');
 
     const alert = (message, type) => {
-            const wrapper = document.createElement('div')
-            wrapper.innerHTML = [
-                `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-                `<div>${message}</div>`,
-                `<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
-                `</div>`
-            ].join('')
-            alertPlaceholder.append(wrapper)
-        }
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+            `<div>${message}</div>`,
+            `<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
+            `</div>`
+        ].join('');
+        alertPlaceholder.append(wrapper);
+    }
         
 
     function isNumeric(n){
@@ -143,7 +143,7 @@ const Shop = () => {
         let email = document.getElementById("inputEmail4");
         let name = document.getElementById("inputName");
         let card = document.getElementById("inputCard");
-        let address1 = document.getElementById("inputAddress");
+        let address = document.getElementById("inputAddress");
         let zip = document.getElementById("inputZip");
         let city = document.getElementById("inputCity");
 
@@ -167,12 +167,24 @@ const Shop = () => {
         }else{
             card.setAttribute("class", "form-control is-valid");
             setCard(card.value);
-        }if(!(typeof address.value === String || address.value instanceof String) || address1.value.length === 0){
+        }if(isNaN(parseInt(zip.value)) || zip.value.length !== 5){
+            zip.setAttribute("class", "form-control is-invalid");
+            val = false;
+        }else{
+            zip.setAttribute("class", "form-control is-valid");
+            setZip(card.value);
+        }if(!(typeof address.value === String || address.value instanceof String) || address.value.length === 0){
             address.setAttribute("class", "form-control is-invalid");
             val = false;
         }else{
             address.setAttribute("class", "form-control is-valid");
             setAddress(address.value);
+        }if(!(typeof city.value === String || city.value instanceof String) || city.value.length === 0){
+            city.setAttribute("class", "form-control is-invalid");
+            val = false;
+        }else{
+            address.setAttribute("class", "form-control is-valid");
+            setCity(city.value);
         }
         return val;
     }
