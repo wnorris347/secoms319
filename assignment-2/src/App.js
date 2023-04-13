@@ -27,9 +27,9 @@ const Shop = () => {
     const total = () => {
         let totalVal = 0;
         for (let i = 0; i < cart.length; i++){
-            totalVal += parseFloat(cart[i].price).toFixed(2);
+            totalVal += (Math.round(cart[i].price * 100) / 100);
         }
-        setCartTotal(parseFloat(totalVal).toFixed(2));
+        setCartTotal(Math.round(totalVal * 100) / 100);
     };
 
     const handleCheckout = () => {
@@ -191,7 +191,7 @@ const Shop = () => {
         }else{
             userZip.setAttribute("class", "form-control is-valid");
             setZip(userZip.value);
-        }if(!(typeof address1.value === String || address1.value instanceof String) || address1.value.length === 0){
+        }if(address1.value.length === 0){
             address1.setAttribute("class", "form-control is-invalid");
             val = false;
         }else{
@@ -210,7 +210,17 @@ const Shop = () => {
             userCity.setAttribute("class", "form-control is-invalid");
             val = false;
         }
-        return val;
+        if (val){
+            form.classList.add("collapse");
+
+            for(const [key, value] of Object.entries(cart)){
+                summaryList.innerHtmL += '<li class="list-group-item"><strong>' + `${key}` + '</strong>' + `${value}` + `</li>`
+            }
+            summaryCard.classList.remove("collapse");
+            alertPlaceholder.innerHTML = "";
+            alert(`<i class="bi-cart-check-fill"</i> You have made an order!`, `success`)
+            handleSubmit();
+        }
     }
 
 return (
@@ -231,11 +241,11 @@ return (
                             <div class="float-end">
                                 <p class="mb-0 me-5 d-flex align-items-center">
                                     <span class="small text-muted me-2">Subtotal:</span>
-                                    <span class="lead fw-normal">${parseFloat(cartTotal).toFixed(2)}</span>
+                                    <span class="lead fw-normal">${Math.round(cartTotal * 100) / 100}</span>
                                     <span class="small text-muted me-2">Tax:</span>
-                                    <span class="lead fw-normal">${parseFloat(cartTotal * 0.07).toFixed(2)}</span>
+                                    <span class="lead fw-normal">${Math.round(cartTotal * 7) / 100}</span>
                                     <span class="small text-muted me-2">Total:</span>
-                                    <span class="lead fw-normal">${parseFloat(cartTotal * 1.07).toFixed(2)}</span>
+                                    <span class="lead fw-normal">${Math.round(cartTotal * 107) / 100}</span>
                                 </p>
                                 {showBrowse && (
                                     <button type="button" onClick={() => handleCheckout()}>
@@ -337,7 +347,12 @@ return (
                                                 </div>
                                                 <div class="col-12">
                                                     <button type="button" class="btn btn-default" onClick={() => goBack()}>Return</button>
-                                                    <button type="button" class="btn btn-success" onClick={() => handleSubmit()}>
+                                                    <button type="button" class="btn btn-success" onClick={() => {
+                                                        let valid = validate();
+                                                        if(valid){
+                                                            handleSubmit();
+                                                        }
+                                                    }}>
                                                         {" "}
                                                         <i class="bi-bag-check"></i> Order
                                                     </button>
@@ -350,10 +365,10 @@ return (
                             {showConfirmation && (
                                 <div class="card" style={{ width: 18 + "rem" }}>
                                     <div class="card-body">
-                                        <h5 card-title>Thank you for your purchase!</h5>
-                                        <p class="card-text">
-                                            <u>Order Summary</u>
-                                        </p>
+                                    <h5 card-title>Thank you for your purchase!</h5>
+                                    <p class="card-text">
+                                        <u>Order Summary</u>
+                                    </p>
                                         {cartItems}<br />
                                         {name}<br />
                                         {email}<br />
@@ -363,7 +378,7 @@ return (
                                         {state}
                                     </div>
                                     <ul class="list-group list-group-flush"></ul>
-                                    <button type="button" class="btn btn-success" onClick={() => handleReturn}>Return</button>
+                                    <button type="button" class="btn btn-success" onClick={() => handleReturn()}>Return</button>
                                 </div>
                             )}
                         </div>
