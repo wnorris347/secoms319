@@ -230,11 +230,11 @@ return (
                                         <span class="lead fw-normal">${Math.round(cartTotal * 100) / 100}</span>
                                     </div>
                                     <div>
-                                        <span class="small text-muted me-2">Tax:</span>
+                                        <span class="small text-muted me-2">{"    "}Tax:</span>
                                         <span class="lead fw-normal">${Math.round(cartTotal * 7) / 100}</span>
                                     </div>
                                     <div>
-                                        <span class="small text-muted me-2">Total:</span>
+                                        <span class="small text-muted me-2">{"    "}Total:</span>
                                         <span class="lead fw-normal">${Math.round(cartTotal * 107) / 100}</span>
                                     </div>
                                 </p>
