@@ -39,9 +39,69 @@ const Shop = () => {
     }
 
     const handleSubmit = () => {
-        setShowBrowse(false);
-        setShowCart(false);
-        setShowConfirmation(true);
+        let val = true;
+        let userEmail = document.getElementById("inputEmail4");
+        let userName = document.getElementById("inputName");
+        let userCard = document.getElementById("inputCard");
+        let address1 = document.getElementById("inputAddress");
+        let userZip = document.getElementById("inputZip");
+        let userCity = document.getElementById("inputCity");
+        let userState = document.getElementById("inputState");
+
+        if(!userEmail.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+            userEmail.setAttribute("class", "form-control is-invalid");
+            val = false;
+        }else{
+            userEmail.setAttribute("class", "form-control is-valid");
+            setEmail(userEmail.value);
+        }
+        if(userName.value.length == 0){
+            userName.setAttribute("class", "form-control is-invalid");
+            val = false;
+        }else{
+            userName.setAttribute("class", "form-control is-valid");
+            setName(userName.value);
+        }
+        if (!userCard.value.match(/^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/)){
+            userCard.setAttribute("class", "form-control is-invalid");
+            val = false;
+        }else{
+            userCard.setAttribute("class", "form-control is-valid");
+            setCard(userCard.value);
+        }
+        if(isNaN(parseInt(userZip.value)) || userZip.value.length !== 5){
+            userZip.setAttribute("class", "form-control is-invalid");
+            val = false;
+        }else{
+            userZip.setAttribute("class", "form-control is-valid");
+            setZip(userZip.value);
+        }
+        if(address1.value.length === 0){
+            address1.setAttribute("class", "form-control is-invalid");
+            val = false;
+        }else{
+            address1.setAttribute("class", "form-control is-valid");
+            setAddress(address1.value);
+        }
+        if(userCity.value.length === 0){
+            userCity.setAttribute("class", "form-control is-invalid");
+            val = false;
+        }else{
+            userCity.setAttribute("class", "form-control is-valid");
+            setCity(userCity.value);
+        }
+        if(userState.value !== "None"){
+            userState.setAttribute("class", "form-control is-valid");
+            setState(userState.value);
+        }else{
+            userState.setAttribute("class", "form-control is-invalid");
+            val = false;
+        }
+        if(val){
+            setShowBrowse(false);
+            setShowCart(false);
+            setShowConfirmation(true);
+        }
     }
 
     const goBack = () => {
@@ -62,7 +122,7 @@ const Shop = () => {
     const censor = (str) => {
         let chars = str.split('');
         for(let i = 0; i < str.length; i++){
-            if(i < 15 || chars[i] !== '-'){
+            if(i < 15 && chars[i] !== '-'){
                 chars[i] = 'X';
             }
         }
@@ -155,73 +215,6 @@ const Shop = () => {
         return !isNaN(parseFloat(n)) && isFinite(n);
     }
 
-    function validate() {
-        let val = true;
-        let userEmail = document.getElementById("inputEmail4");
-        let userName = document.getElementById("inputName");
-        let userCard = document.getElementById("inputCard");
-        let address1 = document.getElementById("inputAddress");
-        let userZip = document.getElementById("inputZip");
-        let userCity = document.getElementById("inputCity");
-        let userState = document.getElementById("inputState");
-
-        if(!userEmail.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
-            userEmail.setAttribute("class", "form-control is-invalid");
-            val = false;
-        }else{
-            userEmail.setAttribute("class", "form-control is-valid");
-            setEmail(userEmail.value);
-        }
-        if(userName.value.length == 0){
-            userName.setAttribute("class", "form-control is-invalid");
-            val = false;
-        }else{
-            userName.setAttribute("class", "form-control is-valid");
-            setName(userName.value);
-        }
-        if (!userCard.value.match(/^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/)){
-            userCard.setAttribute("class", "form-control is-invalid");
-            val = false;
-        }else{
-            userCard.setAttribute("class", "form-control is-valid");
-            setCard(userCard.value);
-        }if(isNaN(parseInt(userZip.value)) || userZip.value.length !== 5){
-            userZip.setAttribute("class", "form-control is-invalid");
-            val = false;
-        }else{
-            userZip.setAttribute("class", "form-control is-valid");
-            setZip(userZip.value);
-        }if(address1.value.length === 0){
-            address1.setAttribute("class", "form-control is-invalid");
-            val = false;
-        }else{
-            address1.setAttribute("class", "form-control is-valid");
-            setAddress(address1.value);
-        }if(!(typeof userCity.value === String || userCity.value instanceof String) || userCity.value.length === 0){
-            userCity.setAttribute("class", "form-control is-invalid");
-            val = false;
-        }else{
-            userCity.setAttribute("class", "form-control is-valid");
-            setCity(userCity.value);
-        }if(userState.value != "Choose..."){
-            userCity.setAttribute("class", "form-control is-valid");
-            setState(userCity.value);
-        }else{
-            userCity.setAttribute("class", "form-control is-invalid");
-            val = false;
-        }
-        if (val){
-            form.classList.add("collapse");
-
-            for(const [key, value] of Object.entries(cart)){
-                summaryList.innerHtmL += '<li class="list-group-item"><strong>' + `${key}` + '</strong>' + `${value}` + `</li>`
-            }
-            summaryCard.classList.remove("collapse");
-            alertPlaceholder.innerHTML = "";
-            alert(`<i class="bi-cart-check-fill"</i> You have made an order!`, `success`)
-            handleSubmit();
-        }
-    }
 
 return (
     <div>
@@ -331,12 +324,14 @@ return (
                                                         State
                                                     </label>
                                                     <select id="inputState" class="form-select">
-                                                        <option selected>Iowa</option>
-                                                        <option selected>Nebraska</option>
-                                                        <option selected>Florida</option>
-                                                        <option selected>Idaho</option>
-                                                        <option selected>Montana</option>
-                                                        <option selected>Choose...</option>
+                                                        <option value="None">Choose...</option>
+                                                        <option value="Illinois">Illinois</option>
+                                                        <option value="Iowa">Iowa</option>
+                                                        <option value="Kansas">Kansas</option>
+                                                        <option value="Minnesota">Minnesota</option>
+                                                        <option value="Missouri">Missouri</option>
+                                                        <option value="Nebraska">Nebraska</option>
+                                                        <option value="Wisconsin">Wisconsin</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-2">
@@ -347,12 +342,7 @@ return (
                                                 </div>
                                                 <div class="col-12">
                                                     <button type="button" class="btn btn-default" onClick={() => goBack()}>Return</button>
-                                                    <button type="button" class="btn btn-success" onClick={() => {
-                                                        let valid = validate();
-                                                        if(valid){
-                                                            handleSubmit();
-                                                        }
-                                                    }}>
+                                                    <button type="button" class="btn btn-success" onClick={() => handleSubmit()}>
                                                         {" "}
                                                         <i class="bi-bag-check"></i> Order
                                                     </button>
@@ -374,8 +364,7 @@ return (
                                         {email}<br />
                                         {censor(card)}<br />
                                         {address}<br />
-                                        {city}
-                                        {state}
+                                        {city}, {state} {zip}
                                     </div>
                                     <ul class="list-group list-group-flush"></ul>
                                     <button type="button" class="btn btn-success" onClick={() => handleReturn()}>Return</button>
