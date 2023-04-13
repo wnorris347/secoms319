@@ -13,8 +13,6 @@ const Shop = () => {
 
     const [name, setName] = useState('');
     const [card, setCard] = useState('');
-    const [expire, setExpire] = useState('');
-    const [cv, setCV] = useState('');
     const [email, setEmail] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
@@ -273,9 +271,6 @@ return (
                                                             Must be like, "7777-7777-7777-7777"
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <label
                                                 </div>
                                                 <div class="col-12">
                                                     <label for="inputAddress" class="form-label">
