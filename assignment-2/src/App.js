@@ -22,57 +22,6 @@ const Shop = () => {
     const [address, setAddress] = useState('');
     const [address2, setAddress2] = useState('');
 
-    const handleName = (e) => {
-        const newName = e.target.value;
-        setName(newName);
-    };
-
-    const handleCard = (e) => {
-        const newCard = e.target.value;
-        setCard(newCard);
-    }
-
-    const handleExpire = (e) => {
-        const newExpire = e.target.value;
-        setExpire(newExpire);
-    }
-
-    const handleCV = (e) => {
-        const newCV = e.target.value;
-        setCV(newCV);
-
-    }
-    const handleEmail = (e) => {
-        const newEmail = e.target.value;
-        setEmail(newEmail);
-    }
-
-    const handleCity = (e) => {
-        const newCity = e.target.value;
-        setCity(newCity);
-        
-    }
-    const handleState = (e) => {
-        const newState = e.target.value;
-        setState(newState);
-        
-    }
-    const handleZip = (e) => {
-        const newZip = e.target.value;
-        setZip(newZip);
-        
-    }
-    const handleAddress = (e) => {
-        const newAddress = e.target.value;
-        setAddress(newAddress);
-        
-    }
-    const handleAddress2 = (e) => {
-        const newAddress2 = e.target.value;
-        setAddress2(newAddress2);
-        
-    }
-
     useEffect(() => {
         total();
     }, [cart]);
@@ -174,14 +123,14 @@ const Shop = () => {
     const summaryList = document.querySelector('.card > ul');
 
     const alert = (message, type) => {
-        const wrapper = document.createElement('div')
-        wrapper.innerHTML = [
-        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-        `<div>${message}</div>`,
-        `<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
-        `</div>`
-        ].join('')
-        alertPlaceholder.append(wrapper)
+            const wrapper = document.createElement('div')
+            wrapper.innerHTML = [
+                `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+                `<div>${message}</div>`,
+                `<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`,
+                `</div>`
+            ].join('')
+            alertPlaceholder.append(wrapper)
         }
         
 
@@ -194,6 +143,10 @@ const Shop = () => {
         let email = document.getElementById("inputEmail4");
         let name = document.getElementById("inputName");
         let card = document.getElementById("inputCard");
+        let address1 = document.getElementById("inputAddress");
+        let zip = document.getElementById("inputZip");
+        let city = document.getElementById("inputCity");
+
         if(!email.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
             email.setAttribute("class", "form-control is-invalid");
             val = false;
@@ -214,6 +167,12 @@ const Shop = () => {
         }else{
             card.setAttribute("class", "form-control is-valid");
             setCard(card.value);
+        }if(!(typeof address.value === String || address.value instanceof String) || address1.value.length === 0){
+            address.setAttribute("class", "form-control is-invalid");
+            val = false;
+        }else{
+            address.setAttribute("class", "form-control is-valid");
+            setAddress(address.value);
         }
         return val;
     }
