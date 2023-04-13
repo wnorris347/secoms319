@@ -20,7 +20,7 @@ function Cart(){
     const [address2, setAddress2] = useState('');
 
 
-    const handleName = (e) => {
+    const handleName = (e) =>  {
         const newName = e.target.value;
         setName(newName);
     };
