@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from "react";
 import items from "./data.json";
+import "bootstrap/dist/css/bootstrap.css";
 
 const Shop = () => {
     const [cart, setCart] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
     const [ProductsCategory, setProductsCategory] = useState(items);
     const [query, setQuery] = useState("");
-    const [catalog, setCatalog] = useState(true);
+    const [showBrowse, setShowBrowse] = useState(true);
     const [showCart, setShowCart] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
 
@@ -21,6 +22,57 @@ const Shop = () => {
     const [address, setAddress] = useState('');
     const [address2, setAddress2] = useState('');
 
+    const handleName = (e) => {
+        const newName = e.target.value;
+        setName(newName);
+    };
+
+    const handleCard = (e) => {
+        const newCard = e.target.value;
+        setCard(newCard);
+    }
+
+    const handleExpire = (e) => {
+        const newExpire = e.target.value;
+        setExpire(newExpire);
+    }
+
+    const handleCV = (e) => {
+        const newCV = e.target.value;
+        setCV(newCV);
+
+    }
+    const handleEmail = (e) => {
+        const newEmail = e.target.value;
+        setEmail(newEmail);
+    }
+
+    const handleCity = (e) => {
+        const newCity = e.target.value;
+        setCity(newCity);
+        
+    }
+    const handleState = (e) => {
+        const newState = e.target.value;
+        setState(newState);
+        
+    }
+    const handleZip = (e) => {
+        const newZip = e.target.value;
+        setZip(newZip);
+        
+    }
+    const handleAddress = (e) => {
+        const newAddress = e.target.value;
+        setAddress(newAddress);
+        
+    }
+    const handleAddress2 = (e) => {
+        const newAddress2 = e.target.value;
+        setAddress2(newAddress2);
+        
+    }
+
     useEffect(() => {
         total();
     }, [cart]);
@@ -34,19 +86,19 @@ const Shop = () => {
     };
 
     const handleCheckout = () => {
-        setCatalog(false);
+        setShowBrowse(false);
         setShowCart(true);
         setShowConfirmation(false);
     }
 
     const handleSubmit = () => {
-        setCatalog(false);
+        setShowBrowse(false);
         setShowCart(false);
         setShowConfirmation(true);
     }
 
     const handleReturn = () => {
-        setCatalog(true);
+        setShowBrowse(true);
         setShowCart(false);
         setShowConfirmation(false);
     }
@@ -114,7 +166,43 @@ const Shop = () => {
         </div>
     ));
 
+    
 
+    function isNumeric(n){
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
+    function validate() {
+        let val = true;
+        let email = document.getElementById("inputEmail4");
+        let name = document.getElementById("inputName");
+        let card = document.getElementById("inputCard");
+        if(!email.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+            email.setAttribute("class", "form-control is-invalid");
+            val = false;
+        }else{
+            email.setAttribute("class", "form-control is-valid");
+            setEmail(email.value);
+        }
+        if(name.value.length == 0){
+            name.setAttribute("class", "form-control is-invalid");
+            val = false;
+        }else{
+            name.setAttribute("class", "form-control is-valid");
+            setName(name.value);
+        }
+        if (!card.value.match(/^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/)){
+            card.setAttribute("class", "form-control is-invalid");
+            val = false;
+        }else{
+            card.setAttribute("class", "form-control is-valid");
+            setCard(card.value);
+        }
+        return val;
+    }
+
+
+    
 }
 
 export default Shop;
