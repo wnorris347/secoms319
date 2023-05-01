@@ -16,6 +16,7 @@ function App() {
     image: "http://localhost:4000/images/",
     rating: { rate: 0.0, count: 0 },
   });
+  const [editedProduct, setEditedProduct] = useState({});
 
   useEffect(() => {
     getAllProducts();
@@ -110,12 +111,31 @@ function App() {
         console.log("Post a new product completed");
         console.log(data);
         if (data) {
-          //const keys = Object.keys(data);
           const value = Object.values(data);
           alert(value);
         }
       });
-  }  
+  } 
+
+  function handleProductUpdate(e) {
+    e.preventDefault();
+    fetch("http://localhost:4000/insert", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(editedProduct),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Update completed");
+        console.log(data);
+        if (data) {
+          const value = Object.values(data);
+          alert(value);
+        }
+      });
+  } 
+
+
     
 
 return (
@@ -155,6 +175,18 @@ return (
         <button type="submit" onClick={handleOnSubmit}>
           submit
         </button>
+      </form>
+    </div>
+    <div>
+      <h3>Update Product's Price</h3>
+      <form key={editedProduct._id} onSubmit={handleProductUpdate}>
+        <input type="text" name="_id" placeholder="ID" value={editedProduct._id} onChange={(e) => setEditedProduct({
+          ...editedProduct, _id: e.target.value
+        })} />
+        <input type="number" name="price" placeholder="Price" value={editedProduct.price} onChange={(e) => setEditedProduct({
+          ...editedProduct, price: e.target.value
+        })} />
+        <button variant="primary" type="submit" onClick={handleProductUpdate}>Update Price</button>
       </form>
     </div>
   </div>
