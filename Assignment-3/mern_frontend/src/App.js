@@ -13,7 +13,7 @@ function App() {
     price: 0.0,
     description: "",
     category: "",
-    image: "http://localhost:4000/images/",
+    image: "",
     rating: { rate: 0.0, count: 0 },
   });
   const [editedProduct, setEditedProduct] = useState({});
@@ -84,7 +84,7 @@ function App() {
     } else if (evt.target.name === "category") {
       setAddNewProduct({ ...addNewProduct, category: value });
     } else if (evt.target.name === "image") {
-    const temp = value;
+    const temp = "http://localhost:4000/images/" + value;
       setAddNewProduct({ ...addNewProduct, image: temp });
     } else if (evt.target.name === "rate") {
       setAddNewProduct({ ...addNewProduct, rating: { rate: value } });
