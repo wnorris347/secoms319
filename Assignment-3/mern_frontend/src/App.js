@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 function App() {
   const [product, setProduct] = useState([]);
   const [viewer1, setViewer1] = useState(false);
-
   const [oneProduct, setOneProduct] = useState([]);
   const [viewer2, setViewer2] = useState(false);
+  const [checked4, setChecked4] = useState(false);
+  const [index, setIndex] = useState(0);
+  const [editedProduct, setEditedProduct] = useState({});
 
   const [addNewProduct, setAddNewProduct] = useState({
     _id: 0,
@@ -16,10 +18,11 @@ function App() {
     image: "",
     rating: { rate: 0.0, count: 0 },
   });
-  const [editedProduct, setEditedProduct] = useState({});
+  
 
-  const [checked4, setChecked4] = useState(false);
-  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    getAllProducts();
+  }, []);
 
   useEffect(() => {
     getAllProducts();
