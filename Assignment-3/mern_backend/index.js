@@ -6,8 +6,6 @@ let Product = require('./dataSchema.js');
 
 app.use(express.json());
 app.use(cors());
-
-//show images in front end
 app.use(express.static("public"));
 app.use("/images", express.static("images"));
 
@@ -22,9 +20,6 @@ mongoose.connect("mongodb://localhost:27017/reactdata",
 //web server port
 const port = process.env.PORT || 4000;
 const host = "localhost";
-app.listen(port, () => {
-    console.log(`App listening at http://%s:%s`, host, port);
-});
 
 app.get("/", async (req, resp) => {
     const query = {};
@@ -51,6 +46,7 @@ app.post("/insert", async (req, res) => {
     const pimage = req.body.image;
     const prate = req.body.rating.rate;
     const pcount = req.body.rating.count;
+
     const formData = new Product({
         _id: p_id,
         title: ptitle,
@@ -96,4 +92,8 @@ app.delete("/delete", async (req, res) => {
     } catch (err) {
         console.log("Error while deleting :" + p_id + " " + err);
     }
+});
+
+app.listen(port, () => {
+    console.log(`App listening at http://%s:%s`, host, port);
 });
