@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use(express.static("public"));
-app.use("/images", express.static("imaages"));
+app.use("/images", express.static("images"));
 
 mongoose.connect("mongodb://localhost:27017/reactdata",
     {
@@ -29,4 +29,12 @@ app.get("/", async (req, resp) => {
     const allProducts = await Product.find(query);
     console.log(allProducts);
     resp.send(allProducts);
+});
+
+app.get("/:id", async (req, resp) => {
+    const id = req.params.id;
+    const query = { _id: id };
+    const oneProduct = await Product.findOne(query);
+    console.log(oneProduct);
+    resp.send(oneProduct);
 });
