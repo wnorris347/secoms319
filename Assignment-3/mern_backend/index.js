@@ -51,6 +51,15 @@ app.post("/insert", async (req, res) => {
     const pimage = req.body.image;
     const prate = req.body.rating.rate;
     const pcount = req.body.rating.count;
+    const formData = new Product({
+        _id: p_id,
+        title: ptitle,
+        price: pprice,
+        description: pdescription,
+        category: pcategory,
+        image: pimage,
+        rating: { rate: prate, count: pcount },
+    });
     try {
         // await formData.save();
         await Product.create(formData);
@@ -73,14 +82,18 @@ app.put("/update", async (req, res) => {
     } catch (err) {
       console.log("Error while updating product: " + err);
     }
-  });
+});
 
-const formData = new Product({
-    _id: p_id,
-    title: ptitle,
-    price: pprice,
-    description: pdescription,
-    category: pcategory,
-    image: pimage,
-    rating: { rate: prate, count: pcount },
+app.delete("/delete", async (req, res) => {
+    console.log("Delete :", req.body);
+    try {
+        const query = { _id: req.body._id };
+        await Product.deleteOne(query);
+        const messageResponse = {
+            message: `Product ${req.body._id} deleted correctly`,
+        };
+        res.send(JSON.stringify(messageResponse));
+    } catch (err) {
+        console.log("Error while deleting :" + p_id + " " + err);
+    }
 });
