@@ -13,7 +13,7 @@ function App() {
     price: 0.0,
     description: "",
     category: "",
-    image: "http://127.0.0.1:4000/images/",
+    image: "http://localhost:4000/images/",
     rating: { rate: 0.0, count: 0 },
   });
 
