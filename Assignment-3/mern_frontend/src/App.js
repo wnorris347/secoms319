@@ -3,11 +3,8 @@ import { useState, useEffect } from "react";
 function App() {
   const [product, setProduct] = useState([]);
   const [viewer1, setViewer1] = useState(false);
-<<<<<<< HEAD
-=======
   const [viewer4, setViewer4] =useState(false);
 
->>>>>>> fa5a72d (update)
   const [oneProduct, setOneProduct] = useState([]);
   const [viewer2, setViewer2] = useState(false);
   const [checked4, setChecked4] = useState(false);
