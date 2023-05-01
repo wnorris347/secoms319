@@ -18,9 +18,12 @@ function App() {
   });
   const [editedProduct, setEditedProduct] = useState({});
 
+  const [checked4, setChecked4] = useState(false);
+  const [index, setIndex] = useState(0);
+
   useEffect(() => {
     getAllProducts();
-  }, []);
+  }, [checked4]);
 
   function getAllProducts() {
     fetch("http://localhost:4000/")
@@ -70,6 +73,43 @@ function App() {
       Rate :{el.rating.rate} and Count:{el.rating.count} <br />
     </div>
   ));
+
+  function getOneByOneProductNext() {
+    if (product.length > 0) {
+      if (index === product.length - 1) setIndex(0);
+      else setIndex(index + 1);
+      if (product.length > 0) setViewer4(true);
+      else setViewer4(false);
+    }
+  }
+
+  function getOneByOneProductPrev() {
+    if (product.length > 0) {
+      if (index === 0) setIndex(product.length - 1);
+      else setIndex(index - 1);
+      if (product.length > 0) setViewer4(true);
+      else setViewer4(false);
+    }
+  }
+
+  function deleteOneProduct(deleteid) {
+    console.log("Product to delete :", deleteid);
+    fetch("http://localhost:4000/delete/", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ _id: deleteid }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Delete a product completed : ", deleteid);
+        console.log(data);
+        if (data) {
+          const value = Object.values(data);
+          alert(value);
+        }
+      });
+    setChecked4(!checked4);
+  }  
 
   function handleChange(evt) {
     const value = evt.target.value;
@@ -188,6 +228,27 @@ return (
         })} />
         <button variant="primary" type="submit" onClick={handleProductUpdate}>Update Price</button>
       </form>
+    </div>
+    <div>
+      <h3>Delete one product:</h3>
+      
+      <input type="checkbox" id="acceptdelete" name="acceptdelete" checked={checked4} onChange={(e) => setChecked4(!checked4)} />
+      
+      <button onClick={() => getOneByOneProductPrev()}>Prev</button>
+      <button onClick={() => getOneByOneProductNext()}>Next</button>
+      <button onClick={() => deleteOneProduct(product[index]._id)}>Delete</button>
+      
+      {checked4 && (
+        <div key={product[index]._id}>
+          <img src={product[index].image} width={30} /> <br />
+          Id:{product[index]._id} <br />
+          Title: {product[index].title} <br />
+          Category: {product[index].category} <br />
+          Price: {product[index].price} <br />
+          Rate :{product[index].rating.rate} and Count:
+          {product[index].rating.count} <br />
+        </div>
+      )}
     </div>
   </div>
 )
