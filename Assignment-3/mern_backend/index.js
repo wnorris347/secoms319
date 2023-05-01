@@ -61,6 +61,20 @@ app.post("/insert", async (req, res) => {
     }
 });
 
+app.put("/update", async (req, res) => {
+    try {
+      const updateProduct = req.body;
+      const query = { _id: updateProduct._id };
+      await Product.findOneAndUpdate(query, updateProduct, { new: true });
+      const messageResponse = {
+        "message": `Product ${updateProduct._id} updated correctly`,
+      };
+      res.send(JSON.stringify(messageResponse));
+    } catch (err) {
+      console.log("Error while updating product: " + err);
+    }
+  });
+
 const formData = new Product({
     _id: p_id,
     title: ptitle,
