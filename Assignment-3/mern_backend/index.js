@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.static("public"));
 app.use("/images", express.static("images"));
 
-mongoose.connect("mongodb://127.0.0.1:27017/reactdata", {
+mongoose.connect("mongodb://localhost:27017/reactdata", {
     dbName: "reactdata",
     useNewUrlParser: true,
     useUnifiedTopology: true,
