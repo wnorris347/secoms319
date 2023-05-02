@@ -30,6 +30,32 @@ function App() {
     getAllProducts();
   }, [checked4]);
 
+  function handleChange(evt) {
+    const value = evt.target.value;
+    if (evt.target.name === "_id") {
+      setAddNewProduct({ ...addNewProduct, _id: value });
+    } else if (evt.target.name === "title") {
+      setAddNewProduct({ ...addNewProduct, title: value });
+    } else if (evt.target.name === "price") {
+      setAddNewProduct({ ...addNewProduct, price: value });
+    } else if (evt.target.name === "description") {
+      setAddNewProduct({ ...addNewProduct, description: value });
+    } else if (evt.target.name === "category") {
+      setAddNewProduct({ ...addNewProduct, category: value });
+    } else if (evt.target.name === "image") {
+    const temp = "http://localhost:4000/images/" + value;
+      setAddNewProduct({ ...addNewProduct, image: temp });
+    } else if (evt.target.name === "rate") {
+      setAddNewProduct({ ...addNewProduct, rating: { rate: value } });
+    } else if (evt.target.name === "count") {
+      const temp = addNewProduct.rating.rate;
+      setAddNewProduct({
+        ...addNewProduct,
+        rating: { rate: temp, count: value },
+      });
+    }
+  }
+
   function getAllProducts() {
     fetch("http://localhost:4000/")
       .then((response) => response.json())
@@ -115,32 +141,6 @@ function App() {
       });
     setChecked4(!checked4);
   }  
-
-  function handleChange(evt) {
-    const value = evt.target.value;
-    if (evt.target.name === "_id") {
-      setAddNewProduct({ ...addNewProduct, _id: value });
-    } else if (evt.target.name === "title") {
-      setAddNewProduct({ ...addNewProduct, title: value });
-    } else if (evt.target.name === "price") {
-      setAddNewProduct({ ...addNewProduct, price: value });
-    } else if (evt.target.name === "description") {
-      setAddNewProduct({ ...addNewProduct, description: value });
-    } else if (evt.target.name === "category") {
-      setAddNewProduct({ ...addNewProduct, category: value });
-    } else if (evt.target.name === "image") {
-    const temp = "http://localhost:4000/images/" + value;
-      setAddNewProduct({ ...addNewProduct, image: temp });
-    } else if (evt.target.name === "rate") {
-      setAddNewProduct({ ...addNewProduct, rating: { rate: value } });
-    } else if (evt.target.name === "count") {
-      const temp = addNewProduct.rating.rate;
-      setAddNewProduct({
-        ...addNewProduct,
-        rating: { rate: temp, count: value },
-      });
-    }
-  }
 
 
   function handleOnSubmit(e) {
