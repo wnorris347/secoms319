@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 function App() {
   const [product, setProduct] = useState([]);
   const [viewer1, setViewer1] = useState(false);
-  const [viewer4, setViewer4] =useState(false);
+  const [viewer4, setViewer4] = useState(true);
 
   const [oneProduct, setOneProduct] = useState([]);
   const [viewer2, setViewer2] = useState(false);
@@ -164,7 +164,7 @@ function App() {
 
   function handleProductUpdate(e) {
     e.preventDefault();
-    fetch("http://localhost:4000/insert", {
+    fetch("http://localhost:4000/update", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editedProduct),
