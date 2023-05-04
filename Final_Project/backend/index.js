@@ -41,22 +41,17 @@ app.get("/:id", async (req, resp) => {
 app.post("/insert", async (req, res) => {
     console.log(req.body);
     const p_id = req.body._id;
-    const ptitle = req.body.title;
+    const pname = req.body.productName;
     const pprice = req.body.price;
     const pdescription = req.body.description;
-    const pcategory = req.body.category;
     const pimage = req.body.image;
-    const prate = req.body.rating.rate;
-    const pcount = req.body.rating.count;
 
     const formData = new Product({
         _id: p_id,
-        title: ptitle,
+        productName: pname,
         price: pprice,
         description: pdescription,
-        category: pcategory,
         image: pimage,
-        rating: { rate: prate, count: pcount },
     });
     try {
         // await formData.save();
