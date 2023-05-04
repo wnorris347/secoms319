@@ -44,7 +44,7 @@ function App() {
   const showAllItems = product.map((el) => (
     <div key={el._id}>
       <img src={el.image} width={30} /> <br />
-      Title: {el.title} <br />
+      Product: {el.productName} <br />
       Price: {el.price} <br />
     </div>
   ));
@@ -70,7 +70,7 @@ function App() {
   const showOneItem = oneProduct.map((el) => (
     <div key={el._id}>
       <img src={el.image} width={30} /> <br />
-      Title: {el.title} <br />
+      Product: {el.productName} <br />
       Price: {el.price} <br />
     </div>
   ));
@@ -226,7 +226,7 @@ return (
         <div key={product[index]._id}>
           <img src={product[index].image} width={30} /> <br />
           Id:{product[index]._id} <br />
-          Title: {product[index].productName} <br />
+          Product: {product[index].productName} <br />
           Price: {product[index].price} <br />
         </div>
       )}
