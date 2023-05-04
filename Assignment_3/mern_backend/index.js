@@ -11,9 +11,9 @@ app.use("/images", express.static("images"));
 
 mongoose.set('debug', true);
 
-mongoose.connect("mongodb://localhost:27017/reactdata",
+mongoose.connect("mongodb://localhost:27017/datafinal",
     {
-        dbName: "reactdata",
+        dbName: "datafinal",
         useNewUrlParser: true,
         useUnifiedTopology: true,
     }
