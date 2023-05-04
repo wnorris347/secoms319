@@ -13,11 +13,11 @@ function App() {
 
   const [addNewProduct, setAddNewProduct] = useState({
     _id: 0,
-    title: "",
+    productName: "",
     price: 0.0,
     description: "",
     category: "",
-    image: "",
+    image: "http://localhost:4000/images/",
     rating: { rate: 0.0, count: 0 },
   });
   
@@ -45,9 +45,7 @@ function App() {
     <div key={el._id}>
       <img src={el.image} width={30} /> <br />
       Title: {el.title} <br />
-      Category: {el.category} <br />
       Price: {el.price} <br />
-      Rate :{el.rating.rate} and Count:{el.rating.count} <br />
     </div>
   ));
 
@@ -73,9 +71,7 @@ function App() {
     <div key={el._id}>
       <img src={el.image} width={30} /> <br />
       Title: {el.title} <br />
-      Category: {el.category} <br />
       Price: {el.price} <br />
-      Rate :{el.rating.rate} and Count:{el.rating.count} <br />
     </div>
   ));
 
@@ -120,25 +116,15 @@ function App() {
     const value = evt.target.value;
     if (evt.target.name === "_id") {
       setAddNewProduct({ ...addNewProduct, _id: value });
-    } else if (evt.target.name === "title") {
-      setAddNewProduct({ ...addNewProduct, title: value });
+    } else if (evt.target.name === "productName") {
+      setAddNewProduct({ ...addNewProduct, productName: value });
     } else if (evt.target.name === "price") {
       setAddNewProduct({ ...addNewProduct, price: value });
     } else if (evt.target.name === "description") {
       setAddNewProduct({ ...addNewProduct, description: value });
-    } else if (evt.target.name === "category") {
-      setAddNewProduct({ ...addNewProduct, category: value });
     } else if (evt.target.name === "image") {
-    const temp = "http://localhost:4000/images/" + value;
+      const temp =  value;
       setAddNewProduct({ ...addNewProduct, image: temp });
-    } else if (evt.target.name === "rate") {
-      setAddNewProduct({ ...addNewProduct, rating: { rate: value } });
-    } else if (evt.target.name === "count") {
-      const temp = addNewProduct.rating.rate;
-      setAddNewProduct({
-        ...addNewProduct,
-        rating: { rate: temp, count: value },
-      });
     }
   }
 
@@ -202,19 +188,13 @@ return (
         
         <input type="number" placeholder="id?" name="_id" value={addNewProduct._id} onChange={handleChange} />
         <br />
-        <input type="text" placeholder="title?" name="title" value={addNewProduct.title} onChange={handleChange} />
+        <input type="text" placeholder="Product name?" name="productName" value={addNewProduct.productName} onChange={handleChange} />
         <br />
         <input type="number" placeholder="price?" name="price" value={addNewProduct.price} onChange={handleChange} />
         <br />
         <input type="text" placeholder="description?" name="description" value={addNewProduct.description} onChange={handleChange} />
         <br />
-        <input type="text" placeholder="category?" name="category" value={addNewProduct.category} onChange={handleChange} />
-        <br />
         <input type="text" placeholder="image?" name="image" value={addNewProduct.image} onChange={handleChange} />
-        <br />
-        <input type="number" placeholder="rate?" name="rate" value={addNewProduct.rating.rate} onChange={handleChange} />
-        <br />
-        <input type="number" placeholder="count?" name="count" value={addNewProduct.rating.count} onChange={handleChange} />
         <br />
         <button type="submit" onClick={handleOnSubmit}>
           submit
@@ -246,11 +226,8 @@ return (
         <div key={product[index]._id}>
           <img src={product[index].image} width={30} /> <br />
           Id:{product[index]._id} <br />
-          Title: {product[index].title} <br />
-          Category: {product[index].category} <br />
+          Title: {product[index].productName} <br />
           Price: {product[index].price} <br />
-          Rate :{product[index].rating.rate} and Count:
-          {product[index].rating.count} <br />
         </div>
       )}
     </div>

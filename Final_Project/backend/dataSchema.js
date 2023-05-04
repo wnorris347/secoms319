@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const ReactFormDataSchema = new mongoose.Schema({
     _id: {type: Number},
-    product: {type: String},
+    productName: {type: String},
     price: {type: Number},
     description: {type: String},
     image: {type: String},
