@@ -5,41 +5,41 @@
         "productName": "Blueberry Muffin",
         "price": 2.99,
         "description": "Large blueberry muffin served with milk",
-        "image": "./images/muffin.jpg"
+        "image": "http://localhost:4000/images/muffin.jpg"
     },
     {
         "_id": 2,
         "productName": "Doughnut",
         "price": 1.49,
         "description": "Doughnut topped with vanilla frosting and a chocolate drizzle",
-        "image": "./images/doughnut.jpg"
+        "image": "http://localhost:4000/images/doughnut.jpg"
     },
     {
         "_id": 3,
         "productName": "White Cupcake",
         "price": 3.49,
         "description": "White cake topped with blue buttercream icing and sprinkles",
-        "image": "./images/cupcake.jpg"
+        "image": "http://localhost:4000/images/cupcake.jpg"
     },
     {
         "_id": 4,
         "productName": "Chocolate Cake",
         "price": 3.50,
         "description": "One slice of dark chocolate cake with chocolate icing",
-        "image": "./images/chocolatecake.jpg"
+        "image": "http://localhost:4000/images/chocolatecake.jpg"
     },
     {
         "_id": 5,
         "productName": "Chocolate Brownie",
         "price": 2.00,
         "description": "Brownie stuffed with chocolate chips",
-        "image": "./images/brownie.jpg"
+        "image": "http://localhost:4000/images/brownie.jpg"
     },
     {
         "_id": 6,
         "productName": "Volcano Cake",
         "price": 3.59,
         "description": "Chocolate cake with rich chocolate syrup in the middle",
-        "image": "./images/volcanocake.jpg"
+        "image": "http://localhost:4000/images/volcanocake.jpg"
     }
 ]
