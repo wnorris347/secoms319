@@ -22,21 +22,21 @@
         "image": "./images/cupcake.jpg"
     },
     {
-        "id_": 4,
+        "_id": 4,
         "productName": "Chocolate Cake",
         "price": 3.50,
         "description": "One slice of dark chocolate cake with chocolate icing",
         "image": "./images/chocolatecake.jpg"
     },
     {
-        "id_": 5,
+        "_id": 5,
         "productName": "Chocolate Brownie",
         "price": 2.00,
         "description": "Brownie stuffed with chocolate chips",
         "image": "./images/brownie.jpg"
     },
     {
-        "id_": 6,
+        "_id": 6,
         "productName": "Volcano Cake",
         "price": 3.59,
         "description": "Chocolate cake with rich chocolate syrup in the middle",
