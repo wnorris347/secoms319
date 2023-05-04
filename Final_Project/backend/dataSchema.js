@@ -12,7 +12,7 @@ const ReactFormDataSchema = new mongoose.Schema({
         count : {type: Number}
     }
 },
-    { collection: "fakestore_catalog" }
+    { collection: "bakery_catalog" }
 )
     
 const Product = mongoose.model('Product', ReactFormDataSchema)

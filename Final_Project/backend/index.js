@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
-let Product = require('./DataSchema.js');
+let Product = require('./dataSchema.js');
 
 app.use(express.json());
 app.use(cors());S
@@ -13,7 +13,7 @@ mongoose.set('debug', true);
 
 mongoose.connect("mongodb://localhost:27017/reactdata",
     {
-        dbName: "reactdata",
+        dbName: "datafinal",
         useNewUrlParser: true,
         useUnifiedTopology: true,
     }
