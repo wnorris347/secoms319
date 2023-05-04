@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 function App() {
   const [product, setProduct] = useState([]);
   const [viewer1, setViewer1] = useState(false);
-  const [viewer4, setViewer4] = useState(true);
+  const [viewer4, setViewer4] =useState(false);
 
   const [oneProduct, setOneProduct] = useState([]);
   const [viewer2, setViewer2] = useState(false);
