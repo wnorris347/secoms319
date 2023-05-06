@@ -321,7 +321,7 @@ return (
             <input type="text" name="_id" placeholder="ID" value={editedProduct._id} onChange={(e) => setEditedProduct({
               ...editedProduct, _id: e.target.value
             })} />
-            <input type="number" name="description" placeholder="Description" value={editedProduct.description} onChange={(e) => setEditedProduct({
+            <input type="text" name="description" placeholder="Description" value={editedProduct.description} onChange={(e) => setEditedProduct({
               ...editedProduct, description: e.target.value
             })} />
             <button variant="primary" type="submit" onClick={handleProductUpdate}>Update Description</button>
@@ -332,7 +332,7 @@ return (
               <input type="text" name="_id" placeholder="ID" value={editedProduct._id} onChange={(e) => setEditedProduct({
                 ...editedProduct, _id: e.target.value
               })} />
-              <input type="number" name="image" placeholder="Image" value={editedProduct.image} onChange={(e) => setEditedProduct({
+              <input type="text" name="image" placeholder="Image" value={editedProduct.image} onChange={(e) => setEditedProduct({
                 ...editedProduct, image: e.target.value
               })} />
               <button variant="primary" type="submit" onClick={handleProductUpdate}>Update Image</button>
