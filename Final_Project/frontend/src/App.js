@@ -4,12 +4,13 @@ function App() {
   const [product, setProduct] = useState([]);
   const [viewer1, setViewer1] = useState(false);
   const [viewer4, setViewer4] = useState(true);
-
   const [oneProduct, setOneProduct] = useState([]);
   const [viewer2, setViewer2] = useState(false);
   const [checked4, setChecked4] = useState(false);
   const [index, setIndex] = useState(0);
   const [editedProduct, setEditedProduct] = useState({});
+  const [aboutUs, setAboutUs] = useState(false);
+  const [homePage, setHomePage] = useState(true);
 
   const [addNewProduct, setAddNewProduct] = useState({
     _id: 0,
@@ -166,68 +167,120 @@ function App() {
       });
   } 
 
+  function handleAboutUs(){
+    setViewer1(false);
+    setViewer2(false);
+    setChecked4(false);
+    setHomePage(false);
+    setAboutUs(true);
+  }
+
+  function handleReturnToDev(){
+    setHomePage(true);
+    setAboutUs(false);
+  }
+
 
     
 return (
   <div>
-    <h1>Catalog of Products</h1>
+    {homePage && (  
+      <div>
+        <h1>Catalog of Products</h1>
 
-    <button onClick={() => getAllProducts()}>Show All products</button>
-    
-    <input type="text" id="message" name="message" placeholder="id" onChange={(e) =>getOneProduct(e.target.value)} />
-    <h1>Show all available Products:</h1>
-    <hr></hr>
-    {viewer1 && <div>Products {showAllItems}</div>}
-    <hr></hr>
-    <h1>Show one Product by Id:</h1>
-    {viewer2 && <div>Product: {showOneItem}</div>}
-    <hr></hr>
-    <div>
-      <h3>Add a new product :</h3>
-      <form action="">
+        <button onClick={() => getAllProducts()}>Show All products</button>
         
-        <input type="number" placeholder="id?" name="_id" value={addNewProduct._id} onChange={handleChange} />
-        <br />
-        <input type="text" placeholder="Product name?" name="productName" value={addNewProduct.productName} onChange={handleChange} />
-        <br />
-        <input type="number" placeholder="price?" name="price" value={addNewProduct.price} onChange={handleChange} />
-        <br />
-        <input type="text" placeholder="description?" name="description" value={addNewProduct.description} onChange={handleChange} />
-        <br />
-        <input type="text" placeholder="image?" name="image" value={addNewProduct.image} onChange={handleChange} />
-        <br />
-        <button type="submit" onClick={handleOnSubmit}>
-          submit
-        </button>
-      </form>
-    </div>
+        <input type="text" id="message" name="message" placeholder="id" onChange={(e) =>getOneProduct(e.target.value)} />
+        <h1>Show all available Products:</h1>
+        <hr></hr>
+        {viewer1 && <div>Products {showAllItems}</div>}
+        <hr></hr>
+        <h1>Show one Product by Id:</h1>
+        {viewer2 && <div>Product: {showOneItem}</div>}
+        <hr></hr>
+        <div>
+          <h3>Add a new product :</h3>
+          <form action="">
+            
+            <input type="number" placeholder="id?" name="_id" value={addNewProduct._id} onChange={handleChange} />
+            <br />
+            <input type="text" placeholder="Product name?" name="productName" value={addNewProduct.productName} onChange={handleChange} />
+            <br />
+            <input type="number" placeholder="price?" name="price" value={addNewProduct.price} onChange={handleChange} />
+            <br />
+            <input type="text" placeholder="description?" name="description" value={addNewProduct.description} onChange={handleChange} />
+            <br />
+            <input type="text" placeholder="image?" name="image" value={addNewProduct.image} onChange={handleChange} />
+            <br />
+            <button type="submit" onClick={handleOnSubmit}>
+              submit
+            </button>
+          </form>
+        </div>
+        <div>
+          <h3>Update Product's Price</h3>
+          <form key={editedProduct._id} onSubmit={handleProductUpdate}>
+            <input type="text" name="_id" placeholder="ID" value={editedProduct._id} onChange={(e) => setEditedProduct({
+              ...editedProduct, _id: e.target.value
+            })} />
+            <input type="number" name="price" placeholder="Price" value={editedProduct.price} onChange={(e) => setEditedProduct({
+              ...editedProduct, price: e.target.value
+            })} />
+            <button variant="primary" type="submit" onClick={handleProductUpdate}>Update Price</button>
+          </form>
+        </div>
+        <div>
+          <h3>Delete one product:</h3>
+          
+          <input type="checkbox" id="acceptdelete" name="acceptdelete" checked={checked4} onChange={(e) => setChecked4(!checked4)} />
+          
+          <button onClick={() => getOneByOneProductPrev()}>Prev</button>
+          <button onClick={() => getOneByOneProductNext()}>Next</button>
+          <button onClick={() => deleteOneProduct(product[index]._id)}>Delete</button>
+          
+          {checked4 && (
+            <div key={product[index]._id}>
+              <img src={product[index].image} width={30} /> <br />
+              Id:{product[index]._id} <br />
+              Product: {product[index].productName} <br />
+              Price: {product[index].price} <br />
+            </div>
+          )}
+        </div>
+      </div>
+    )}
     <div>
-      <h3>Update Product's Price</h3>
-      <form key={editedProduct._id} onSubmit={handleProductUpdate}>
-        <input type="text" name="_id" placeholder="ID" value={editedProduct._id} onChange={(e) => setEditedProduct({
-          ...editedProduct, _id: e.target.value
-        })} />
-        <input type="number" name="price" placeholder="Price" value={editedProduct.price} onChange={(e) => setEditedProduct({
-          ...editedProduct, price: e.target.value
-        })} />
-        <button variant="primary" type="submit" onClick={handleProductUpdate}>Update Price</button>
-      </form>
-    </div>
-    <div>
-      <h3>Delete one product:</h3>
-      
-      <input type="checkbox" id="acceptdelete" name="acceptdelete" checked={checked4} onChange={(e) => setChecked4(!checked4)} />
-      
-      <button onClick={() => getOneByOneProductPrev()}>Prev</button>
-      <button onClick={() => getOneByOneProductNext()}>Next</button>
-      <button onClick={() => deleteOneProduct(product[index]._id)}>Delete</button>
-      
-      {checked4 && (
-        <div key={product[index]._id}>
-          <img src={product[index].image} width={30} /> <br />
-          Id:{product[index]._id} <br />
-          Product: {product[index].productName} <br />
-          Price: {product[index].price} <br />
+      <button onClick={() => handleAboutUs()}>About the Developers</button>
+      {aboutUs && (
+        <div>
+          <button onclick={() => handleReturnToDev()}>Return to Database Manager</button>
+          <div class="center-block arial">
+            <h1>About the Developers</h1><br />
+            <h3>SE/COM S 319: Construction of User Interfaces, Spring 2023</h3><br />
+            <h5>March 6, 2023</h5>
+          </div>
+          <br />
+          <br />
+          <br />
+          <h3>Dev Team:</h3>
+          <br />
+          <div class="arial">
+            <p>Will Norris</p><br />
+            <p>wnorris@iastate.edu</p>
+          </div>
+          <br />
+          <div class="arial">
+            <p>Kyle Nachiengane</p><br />
+            <p>knach@iastate.edu</p>
+          </div>
+          <br />
+          <br />
+          <br />
+          <div class="arial">
+            <h3>Professor:</h3><br />
+            <p>Dr. Abraham N. Aldaco Gastelum</p><br />
+            <p>aadalco@iastate.edu</p>
+          </div>
         </div>
       )}
     </div>
