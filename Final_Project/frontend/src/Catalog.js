@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.css";
+import './custom.scss';
 
 const Shop = () => {
     const [cart, setCart] = useState([]);
