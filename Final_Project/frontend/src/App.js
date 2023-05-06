@@ -221,7 +221,7 @@ return (
     {homePage && (  
       <div>
 
-        {/* <button onClick={() => handleCatalog()}>Go to User View</button> */}
+        <button onClick={() => handleCatalog()}>Go to User View</button>
         <button onClick={() => handleAboutUs()}>About the Developers</button>
         <h1>Catalog of Products</h1>
 
