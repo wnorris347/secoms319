@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Catalog from "Catalog.js";
 
 function App() {
   const [product, setProduct] = useState([]);
@@ -199,9 +198,6 @@ return (
       <div>
         <button onClick={() => handleCatalog()}>Go to User View</button>
         <button onClick={() => handleAboutUs()}>About the Developers</button>
-        {catalog && (
-          <Catalog />
-        )}
         <h1>Catalog of Products</h1>
 
         <button onClick={() => pullProducts()}>Show All products</button>
