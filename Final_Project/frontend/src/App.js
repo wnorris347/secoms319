@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Catalog from "./Catalog.js"
 
 function App() {
   const [product, setProduct] = useState([]);
@@ -190,10 +191,26 @@ function App() {
     setCatalog(false);
   }
 
+  function handleCatalog(){
+    setViewer1(false);
+    setViewer2(false);
+    setChecked4(false);
+    setHomePage(false);
+    setCatalog(false);
+    setAboutUs(false);
+    setCatalog(true);
+  }
+
 
     
 return (
   <div>
+    {catalog && (
+      <div>
+        <button onClick={() => handleReturnToDev()}>Return to Developer View</button>
+        <Catalog />
+      </div>
+    )}
     {homePage && (  
       <div>
         <button onClick={() => handleCatalog()}>Go to User View</button>
@@ -264,7 +281,7 @@ return (
     <div>
       {aboutUs && (
         <div>
-          <button onclick={() => handleReturnToDev()}>Return to Database Manager</button>
+          <button onClick={() => handleReturnToDev()}>Return to Database Manager</button>
           <div class="center-block arial">
             <h1>About the Developers</h1><br />
             <h3>SE/COM S 319: Construction of User Interfaces, Spring 2023</h3><br />
