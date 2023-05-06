@@ -166,6 +166,26 @@ function App() {
     getAllProducts();
   } 
 
+  function handleEdit(e){
+    if(toBeUpdated == "productName"){
+      setEditedProduct({
+        ...editedProduct, productName: e.target.value
+      });
+    }else if(toBeUpdated == "price"){
+      setEditedProduct({
+        ...editedProduct, price: e.target.value
+      });
+    }else if(toBeUpdated == "description"){
+      setEditedProduct({
+        ...editedProduct, description: e.target.value
+      });
+    }else if(toBeUpdated == "image"){
+      setEditedProduct({
+        ...editedProduct, image: e.target.value
+      });
+    }
+  }
+
   function handleProductUpdate(e) {
     e.preventDefault();
     fetch("http://localhost:4000/update", {
@@ -207,6 +227,23 @@ function App() {
     setHomePage(false);
     setAboutUs(false);
     setCatalog(true);
+  }
+
+  function handleUpdateChange(){
+    let val = document.getElementById("productUpdate");
+    setToBeUpdated(val.value);
+  }
+
+  const edit = () => {
+    if(toBeUpdated == "productName"){
+      return editedProduct.productName;
+    }else if(toBeUpdated == "price"){
+      return editedProduct.price;
+    }else if(toBeUpdated == "description"){
+      return editedProduct.description;
+    }else if(toBeUpdated == "image"){
+      return editedProduct.image;
+    }
   }
 
 
@@ -261,15 +298,18 @@ return (
           </label>
           <select id="productUpdate" class="form-select" onChange={() => handleUpdateChange()}>
             <option value="">Select a field to update...</option>
-            <option value=""></option>
+            <option value="productName">Product Name</option>
+            <option value="price">Price</option>
+            <option value="description">Description</option>
+            <option value="image">Image</option>
           </select>
           <form key={editedProduct._id} onSubmit={handleProductUpdate}>
             <input type="text" name="_id" placeholder="ID" value={editedProduct._id} onChange={(e) => setEditedProduct({
               ...editedProduct, _id: e.target.value
             })} />
-            <input type="number" name="price" placeholder="Price" value={editedProduct.price} onChange={(e) => setEditedProduct({
-              ...editedProduct, price: e.target.value
-            })} />
+            <input type="text" name="update" placeholder={toBeUpdated} value={edit} onChange={(e) => 
+              handleEdit(e)
+            } />
             <button variant="primary" type="submit" onClick={handleProductUpdate}>Update Price</button>
           </form>
         </div>
