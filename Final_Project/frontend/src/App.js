@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Catalog from "./Catalog.js"
 
+
+import "https://getbootstrap.com/docs/5.3/examples/album/"
+import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
+// import "../assets/dist/css/bootstrap.min.css"
+
+
+
 function App() {
   const [product, setProduct] = useState([]);
   const [viewer1, setViewer1] = useState(false);
@@ -213,7 +220,8 @@ return (
     )}
     {homePage && (  
       <div>
-        <button onClick={() => handleCatalog()}>Go to User View</button>
+
+        {/* <button onClick={() => handleCatalog()}>Go to User View</button> */}
         <button onClick={() => handleAboutUs()}>About the Developers</button>
         <h1>Catalog of Products</h1>
 
