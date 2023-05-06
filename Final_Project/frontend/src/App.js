@@ -3,9 +3,7 @@ import Catalog from "./Catalog.js"
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-// import "https://getbootstrap.com/docs/5.3/examples/album/"
-// import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
-// import "../assets/dist/css/bootstrap.min.css"
+
 
 
 
@@ -238,20 +236,26 @@ function App() {
   }
 
 
+  
     
 return (
   <div>
+    <nav class="navbar">
+    <button class="navbar-btn" onClick={() => handleCatalog()}>User View</button>
+   <button class="navbar-btn" onClick={() => handleAboutUs()}>About</button>
+    <button class="navbar-btn" onClick={() => handleReturnToDev()}>Developer View</button>
+    </nav>
     {catalog && (
       <div>
-        <button onClick={() => handleReturnToDev()}>Return to Developer View</button>
+        {/* <button onClick={() => handleReturnToDev()}>Return to Developer View</button> */}
         <Catalog />
       </div>
     )}
     {homePage && (  
       <div>
 
-        <button onClick={() => handleCatalog()}>Go to User View</button>
-        <button onClick={() => handleAboutUs()}>About the Developers</button>
+        {/* <button onClick={() => handleCatalog()}>Go to User View</button>
+        <button onClick={() => handleAboutUs()}>About the Developers</button> */}
         <h1>Catalog of Products</h1>
 
         <button onClick={() => pullProducts()}>Show All products</button>
@@ -362,7 +366,7 @@ return (
     <div>
       {aboutUs && (
         <div>
-          <button onClick={() => handleReturnToDev()}>Return to Database Manager</button>
+          {/* <button onClick={() => handleReturnToDev()}>Return to Database Manager</button> */}
           <div class="center-block arial">
             <h1>About the Developers</h1><br />
             <h3>SE/COM S 319: Construction of User Interfaces, Spring 2023</h3><br />
@@ -396,4 +400,5 @@ return (
   </div>
 )
 }
+
 export default App;
