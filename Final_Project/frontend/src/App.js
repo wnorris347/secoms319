@@ -111,6 +111,7 @@ function App() {
         }
       });
     setChecked4(!checked4);
+    getAllProducts();
   }  
 
   function handleChange(evt) {
@@ -147,6 +148,7 @@ function App() {
           alert(value);
         }
       });
+    getAllProducts();
   } 
 
   function handleProductUpdate(e) {
