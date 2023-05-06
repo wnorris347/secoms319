@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import Catalog from "Catalog.js";
 
 function App() {
   const [product, setProduct] = useState([]);
@@ -11,6 +12,7 @@ function App() {
   const [editedProduct, setEditedProduct] = useState({});
   const [aboutUs, setAboutUs] = useState(false);
   const [homePage, setHomePage] = useState(true);
+  const [catalog, setCatalog] = useState(false);
 
   const [addNewProduct, setAddNewProduct] = useState({
     _id: 0,
@@ -39,6 +41,10 @@ function App() {
         console.log(data);
         setProduct(data);
       });
+  }
+
+  function pullProducts(){
+    getAllProducts();
     setViewer1(!viewer1);
   }
     
@@ -167,6 +173,7 @@ function App() {
           alert(value);
         }
       });
+    getAllProducts();
   } 
 
   function handleAboutUs(){
@@ -174,12 +181,14 @@ function App() {
     setViewer2(false);
     setChecked4(false);
     setHomePage(false);
+    setCatalog(false);
     setAboutUs(true);
   }
 
   function handleReturnToDev(){
     setHomePage(true);
     setAboutUs(false);
+    setCatalog(false);
   }
 
 
@@ -188,9 +197,14 @@ return (
   <div>
     {homePage && (  
       <div>
+        <button onClick={() => handleCatalog()}>Go to User View</button>
+        <button onClick={() => handleAboutUs()}>About the Developers</button>
+        {catalog && (
+          <Catalog />
+        )}
         <h1>Catalog of Products</h1>
 
-        <button onClick={() => getAllProducts()}>Show All products</button>
+        <button onClick={() => pullProducts()}>Show All products</button>
         
         <input type="text" id="message" name="message" placeholder="id" onChange={(e) =>getOneProduct(e.target.value)} />
         <h1>Show all available Products:</h1>
@@ -252,7 +266,6 @@ return (
       </div>
     )}
     <div>
-      <button onClick={() => handleAboutUs()}>About the Developers</button>
       {aboutUs && (
         <div>
           <button onclick={() => handleReturnToDev()}>Return to Database Manager</button>
