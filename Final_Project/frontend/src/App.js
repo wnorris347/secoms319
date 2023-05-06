@@ -20,6 +20,7 @@ function App() {
   const [aboutUs, setAboutUs] = useState(false);
   const [homePage, setHomePage] = useState(true);
   const [catalog, setCatalog] = useState(false);
+  const [toBeUpdated, setToBeUpdated] = useState("");
 
   const [addNewProduct, setAddNewProduct] = useState({
     _id: 0,
@@ -203,7 +204,6 @@ function App() {
     setViewer2(false);
     setChecked4(false);
     setHomePage(false);
-    setCatalog(false);
     setAboutUs(false);
     setCatalog(true);
   }
@@ -255,7 +255,13 @@ return (
           </form>
         </div>
         <div>
-          <h3>Update Product's Price</h3>
+          <label for="productUpdate" class="form-label">
+            Update Product
+          </label>
+          <select id="productUpdate" class="form-select" onChange={() => handleUpdateChange()}>
+            <option value="">Select a field to update...</option>
+            <option value=""></option>
+          </select>
           <form key={editedProduct._id} onSubmit={handleProductUpdate}>
             <input type="text" name="_id" placeholder="ID" value={editedProduct._id} onChange={(e) => setEditedProduct({
               ...editedProduct, _id: e.target.value
