@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.css";
 const Shop = () => {
     const [cart, setCart] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
-    const [ProductsCategory, setProductsCategory] = useState(Object.create(null));
-    const [items, setItems] = useState(Object.create(null));
+    const [ProductsCategory, setProductsCategory] = useState([]);
+    const [items, setItems] = useState([]);
     const [query, setQuery] = useState("");
     const [showBrowse, setShowBrowse] = useState(true);
     const [showCart, setShowCart] = useState(false);
