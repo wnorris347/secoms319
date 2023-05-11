@@ -86,7 +86,18 @@ image {
 }
 
 .navbar-btn:hover {
-  background-color: #555;
+  background-color: #212121;
+}
+
+.webTitle
+{
+  text-align: center;
+  background-color:beige;
+}
+
+h5{
+  font-size: 50px;
+  
 }
 
 h3 {

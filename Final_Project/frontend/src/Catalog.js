@@ -211,16 +211,18 @@ const Shop = () => {
 
 return (
     <div>
-        <div class="card">
-            <div class="row">
-                <div class="col-8 cart">
-                    <div class="title">
-                        <div class="row">
-                            <div class="col">
+        <div class="webTitle">
                                 <h5>
                                     <p>Bakery Bros</p>
                                 </h5>
                             </div>
+        <div class="card">
+            <div class="row">
+                <div class="col-8 cart">
+                    <div class="title">
+                    
+                        <div class="row">
+                            
                             <div class="col align-self-center text-muted">
                                 Products chosen: {cart.length}
                             </div>
@@ -250,9 +252,11 @@ return (
                                     </div>
                                 </p>
                                 {showBrowse && (
+                                    <div class = "checkout">
                                     <button type="button" onClick={() => handleCheckout()}>
                                         Proceed to checkout
                                     </button>
+                                    </div>
                                 )}
                                 {showCart && (
                                     <div>
