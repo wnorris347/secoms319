@@ -177,7 +177,6 @@ const Shop = () => {
                 <div class="col">
                     <div class="row fs-5">{el.productName}</div>
                 </div>
-               
                 <div class="col">
                     ${el.price.toFixed(2)}
                 </div>
