@@ -194,8 +194,8 @@ const Shop = () => {
                     <img class="img-fluid" src={el.image}/>
                 </div>
                 <div class="col">
-                    <div class="row text-muted">{el.productName}</div>
-                    <div class="row">{el.description}</div>
+                    <div class="row text-md">{el.productName}</div>
+                    <div class="row text-sm-muted">{el.description}</div>
                 </div>
                 <div class="col">
                     <button type="button" variant="light" onClick={() => removeFromCart(el)}>-</button>{" "}
