@@ -169,9 +169,19 @@ const Shop = () => {
     }
 
     const cartItems = cart.map(el => (
-        <div key={el._id}>
-            <img class="img-fluid" src={el.image} width={30}/>
-            {el.productName}${el.price}
+        <div class="row border-top border-bottom" key={el._id}>
+            <div class="row main align-items-center">
+                <div class="col 2">
+                    <img class="img-fluid" src={el.image} width={50}/>
+                </div>
+                <div class="col">
+                    <div class="row fs-5">{el.productName}</div>
+                </div>
+               
+                <div class="col">
+                    ${el.price.toFixed(2)}
+                </div>
+            </div>
         </div>
     ));
 
@@ -194,8 +204,8 @@ const Shop = () => {
                     <img class="img-fluid" src={el.image}/>
                 </div>
                 <div class="col">
-                    <div class="row text-md">{el.productName}</div>
-                    <div class="row text-sm-muted">{el.description}</div>
+                    <div class="row fs-5">{el.productName}</div>
+                    <div class="row fs-6 text-muted">{el.description}</div>
                 </div>
                 <div class="col">
                     <button type="button" variant="light" onClick={() => removeFromCart(el)}>-</button>{" "}
@@ -235,22 +245,23 @@ return (
                                             />
                                             </div>
                                             {listItems}
-                                            </div>
+                                            <p class="mb-0 me-5 d-flex align-items-center">
+                                                <div>
+                                                    <span class="small text-muted me-2">Subtotal:</span>
+                                                    <span class="lead fw-normal">${Math.round(cartTotal * 100) / 100}</span>
+                                                </div>
+                                                <div>
+                                                    <span class="small text-muted me-2">{"    "}Tax:</span>
+                                                    <span class="lead fw-normal">${Math.round(cartTotal * 7) / 100}</span>
+                                                </div>
+                                                <div>
+                                                    <span class="small text-muted me-2">{"    "}Total:</span>
+                                                    <span class="lead fw-normal">${Math.round(cartTotal * 107) / 100}</span>
+                                                </div>
+                                            </p>
+                                    </div>
+                                            
                                 )}
-                                <p class="mb-0 me-5 d-flex align-items-center">
-                                    <div>
-                                        <span class="small text-muted me-2">Subtotal:</span>
-                                        <span class="lead fw-normal">${Math.round(cartTotal * 100) / 100}</span>
-                                    </div>
-                                    <div>
-                                        <span class="small text-muted me-2">{"    "}Tax:</span>
-                                        <span class="lead fw-normal">${Math.round(cartTotal * 7) / 100}</span>
-                                    </div>
-                                    <div>
-                                        <span class="small text-muted me-2">{"    "}Total:</span>
-                                        <span class="lead fw-normal">${Math.round(cartTotal * 107) / 100}</span>
-                                    </div>
-                                </p>
                                 {showBrowse && (
                                     <div class = "checkout">
                                     <button type="button" onClick={() => handleCheckout()}>
@@ -262,6 +273,20 @@ return (
                                     <div>
                                         <h2>Your cart</h2>
                                         {cartItems}
+                                        <p class="mb-0 me-5 d-flex align-items-center">
+                                            <div>
+                                                <span class="small text-muted me-2">Subtotal:</span>
+                                                <span class="lead fw-normal">${Math.round(cartTotal * 100) / 100}</span>
+                                            </div>
+                                            <div>
+                                                <span class="small text-muted me-2">{"    "}Tax:</span>
+                                                <span class="lead fw-normal">${Math.round(cartTotal * 7) / 100}</span>
+                                            </div>
+                                            <div>
+                                                <span class="small text-muted me-2">{"    "}Total:</span>
+                                                <span class="lead fw-normal">${Math.round(cartTotal * 107) / 100}</span>
+                                            </div>
+                                        </p>
                                         <div class="row">
                                             <div class="col-2"></div>
                                             <div class="col-8">

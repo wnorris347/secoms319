@@ -370,7 +370,7 @@ return (
           <div class="center-block arial">
             <h1>About the Developers</h1><br />
             <h3>SE/COM S 319: Construction of User Interfaces, Spring 2023</h3><br />
-            <h5>March 6, 2023</h5>
+            <h5>May 10, 2023</h5>
           </div>
           <br />
           <br />
