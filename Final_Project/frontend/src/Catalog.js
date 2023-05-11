@@ -353,7 +353,7 @@ return (
                             {showConfirmation && (
                                 <div class="card" style={{ width: 18 + "rem" }}>
                                     <div class="card-body">
-                                    <h5 card-title>Thank you for your purchase!</h5>
+                                    <h5 class="card-title">Thank you for your purchase!</h5>
                                     <p class="card-text">
                                         <u>Order Summary</u>
                                     </p>
